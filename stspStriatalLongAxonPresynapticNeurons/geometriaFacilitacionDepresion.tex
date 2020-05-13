@@ -1,0 +1,239 @@
+%& -shell-escape
+\documentclass[8pt]{beamer}
+\usepackage[utf8]{inputenc}
+\input{mahvPreambleBeamer}
+\hypersetup{
+  pdftitle={Herrera-Valdez et al. Simple model for short-term
+    plasticity}
+}
+\usepackage{python}
+
+\title[Geometría y dinámica de la plasticidad sináptica]{Geometría y
+  dinámica detrás de la diversidad en plasticidad sináptica de corto
+  plazo en terminales GABAérgicas del estriado}
+
+\author[Marco Arieli Herrera Valdez]{Marco Arieli Herrera Valdez \\ 
+\textit{Instituto de Matemáticas, U.N.A.M.}\\
+\vspace{10pt}
+\small{Colaboradores: Janet
+    Barroso y José Bargas,\\
+\textit{Instituto de Fisiología Celular, U.N.A.M.}}
+}
+\date{Octubre 22, 2014}
+
+\begin{document}
+% -----------------------------------------------
+\begin{frame}
+\maketitle
+\end{frame}
+
+\section{Simple model of short-term plasticity}
+
+% -----------------------------------------------
+\begin{frame}
+\frametitle{Simple model of short-term plasticity}
+Plasticity here means either depression or enhancement \citep{}.
+
+Assume that a presynaptic cell fires action potentials at times $t_k$,
+$k =1,2,...$. Let $x$ be the occupancy of the release pool and $p$ the
+probability of release. The release dynamics in the presynaptic side
+can then be described by 
+\begin{eqnarray}
+\partial_t p &=&\frac{p_{\infty}-p}{\tau_{f}} + \lrRound{1-p} \sum \textcolor{red}{q(h_k)}
+\phi \lrRound{t,t_k,\mu,\sigma},
+\label{eq:prelease}
+\\
+%\partial_t x &=& \frac{x\lrRound{x_{\infty}-x}}{\tau_{r}} - \sum \phi
+%\lrRound{t,t_k,\mu,\sigma}  p x, 
+\partial_t x &=& \frac{x\lrRound{1-x}}{\tau_{r}} - \sum \phi
+\lrRound{t,t_k,\mu,\sigma}  p x, 
+\label{eq:occupancy}
+\\
+%\delta(y) &=& 1 \textrm{ if } y=0, \quad 0 \textrm{ otherwise} 
+\phi(t,t_k,\mu,\sigma) &=& \frac{1}{\sigma \sqrt{2 \pi}} \exp
+\lrSquare{- \frac{\lrRound{t-t_k -3 \sigma}^2}{2  \sigma^2}},
+\label{eq:phi}
+\end{eqnarray}
+where $h_k=t_{k} -t_{k-1}$ for $k=2,3,...$. The parameters $p_{\infty}$,
+$x_{\infty}$, $\tau_{r}$, and $\tau_{f}$ represent the 
+steady state probability of release, the steady state occupancy, and the recovery and facilitation and
+recovery time constants, respectively. The increase in $p$, denoted by
+\textcolor{red}{$q(h_k) \in (0,1)$} can be assumed to depend on the presynaptic
+interspike intervals. For instance, 
+\begin{equation}
+q(h)= \bar{q} h   e^{1- h/\tau_q}
+\end{equation}
+where $\tau_q$ can be regarded as a facilitation time constant, and
+$\bar{q}$ is the maximum increase in the probability of release. 
+\end{frame}
+
+
+
+% -----------------------------------------------
+\begin{frame}
+\frametitle{Analysis of pulsed activity for constant $q$ and periodic
+  spiking with instantaneous jumps}
+
+\begin{multicols}{2}
+\begin{tiny}
+
+  Let $(p(0),x(0))=(p_0,x_0)$.  Assume that $q \in [0,1]$ is constant
+  and that action potentials occur at times $0<t_1, t_2,...,t_n$,
+  which induce instantáneous jumps. That is, $\phi(t,t_k) =
+  \delta(t-t_k)$, $k=1,...,n$.  Also, assume the interspike intervals
+  $t_k - t_{k-1}=h$ are constant for $k=2,...,n$.
+\begin{eqnarray}
+\underbar{p}_k&=& \lim_{\epsilon\rightarrow 0} p(t_k-\epsilon), 
+\\
+\underbar{x}_k&=& \lim_{\epsilon\rightarrow 0} x(t_k-\epsilon),
+\end{eqnarray}
+for $k=1,...,n$. 
+At the time of arrival for the $k$th pulse, the system jumps as follows:
+\begin{eqnarray}
+\underbar{p}_k& \mapsto & p_k= \underbar{p}_k + q (1-\underbar{p}_k) = \underbar{p}_k \lrRound{1-q} + q,
+\\
+\underbar{x}_k& \mapsto &
+x_k
+= \underbar{x}_k - \underbar{x}_k \underbar{p}_k 
+= \underbar{x}_k \lrRound{1-\underbar{p}_k} ,
+\end{eqnarray}
+That is, $(p_k,x_k)$ is the state of the system after the $k$th
+action potential occurs. 
+
+The dynamics of $(p(t),x(t))$ at a time $t$ between pulses
+linear and logistic dynamics, respectively, which yield functions of the form
+\begin{eqnarray}
+p(t) &=& p_{\infty} - \lrRound{p_{\infty}- p_k}
+   \exp\lrRound{-\frac{(t-t_k)}{\tau_p}},
+ \\
+x(t) &=& x_{\infty} {x_k} \lrSquare{{x_k} + \lrRound{x_{\infty}- x_k}
+\exp\lrRound{-\frac{(t-t_k)}{\tau_x}x_{\infty} }}^{-1},
+\end{eqnarray}
+for $k=1,...,n$ indexing the time of the last pulse.
+
+
+Recall $(p(0),x(0))=(p_0,x_0)$. 
+Written explicitly, the state of the system at
+the arrival of the pulse at time $t_k$ is
+\begin{eqnarray}
+p_k &=& \lrSquare{p_{\infty} - \lrRound{p_{\infty}- p_{k-1}}
+  e^{-\frac{(t_k-t_{k-1})}{\tau_p}}}\lrRound{1-q} + q,
+\\
+x_{k} &=& \frac
+{{x_{k-1}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- p_{k-1}}
+  e^{-\frac{(t_k-t_{k-1})}{\tau_p}}}}
+{ x_{k-1} + \lrRound{x_{\infty}- x_{k-1}} e^{-\frac{(t_k-t_{k-1})}{\tau_x}x_{\infty} }}
+\end{eqnarray}
+for $k=1,...,n$.  The states $(x_k,p_k)$, $k=0,...,n$ can thus be
+regarded as an initial condition to  calculate the state of the system at any time $t$ in which there is
+not an action potential. 
+
+\end{tiny}
+\end{multicols}
+\end{frame}
+
+
+\begin{frame}
+\begin{tiny}
+Explicitly, at the arrival of the first pulse, 
+\begin{eqnarray}
+p_1 &=& \lrSquare{p_{\infty} - \lrRound{p_{\infty}- p_0}
+  e^{-\frac{t_1}{\tau_p}}}\lrRound{1-q} + q,
+\\
+x_{1} &=& \frac{{x_{0}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- p_{0}}
+  e^{-\frac{t_1}{\tau_p}}}}{ {x_{0}} + \lrRound{x_{\infty}- x_{0}}
+  e^{-\frac{t_1}{\tau_x}x_{\infty} }}. 
+\end{eqnarray}
+After the second pulse,
+\begin{eqnarray}
+p_2 
+&=& \lrSquare{p_{\infty} - \lrRound{p_{\infty}- \textcolor{red}{p_1}}
+  e^{-\frac{t_2-t_1}{\tau_p}}}\lrRound{1-q} + q,
+\nonumber \\
+&=& \lrSquare{p_{\infty} - \lrRound{p_{\infty}  
+\textcolor{red}{
+-\lrRound{p_{\infty} - \lrRound{p_{\infty}- p_0}e^{-\frac{t_1}{\tau_p}}}\lrRound{1-q} - q}}
+  e^{-\frac{t_2-t_1}{\tau_p}}}\lrRound{1-q} + q,
+% \nonumber \\
+% &=& \lrSet{p_{\infty}-
+% \lrSquare{
+% \lrRound{p_{\infty}- p_0} \exp\lrRound{-\frac{t_1}{\tau_p}}
+% \lrRound{1-q}
+% - q \lrRound{1-p_{\infty} }}
+% \exp\lrRound{-\frac{t_2}{\tau_p}}} \lrRound{1-q} + q,
+\\
+x_{2} 
+&=& \frac{{\textcolor{blue}{x_{1}}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- \textcolor{red}{p_{1}}}
+e^{-\frac{t_2-t_1}{\tau_p}}}}
+{ {\textcolor{blue}{x_{1}}} + \lrRound{x_{\infty}- \textcolor{blue}{x_{1}}}
+e^{-\frac{t_2-t_1}{\tau_x}x_{\infty} }}, 
+\nonumber \\
+&=& \frac{ \textcolor{blue}{\lrRound{\frac{{x_{0}}x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- p_{0}}
+  e^{-\frac{t_1}{\tau_p}}}}{ {x_{0}} + \lrRound{x_{\infty}- x_{0}}
+  e^{-\frac{t_1}{\tau_x}x_{\infty} }}}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- 
+ \textcolor{red}{\lrSet{ \lrSquare{p_{\infty} - \lrRound{p_{\infty}- p_0}
+ e^{-\frac{t_1}{\tau_p}}}\lrRound{1-q} + q}
+}}  e^{-\frac{t_2-t_1}{\tau_p}}}}
+{{\textcolor{blue}{\lrRound{\frac{{x_{0}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- p_{0}}
+  e^{-\frac{t_1}{\tau_p}}}}{ {x_{0}} + \lrRound{x_{\infty}- x_{0}}
+  e^{-\frac{t_1}{\tau_x}x_{\infty} }}}}  + \lrRound{x_{\infty}-
+\textcolor{blue}{\lrRound{\frac{{x_{0}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- p_{0}}
+  e^{-\frac{t_1}{\tau_p}}}}{ {x_{0}} + \lrRound{x_{\infty}- x_{0}}
+  e^{-\frac{t_1}{\tau_x}x_{\infty} }}}}
+}}
+  e^{-\frac{t_2-t_1}{\tau_x}x_{\infty} }}
+\end{eqnarray}
+
+\end{tiny}
+\end{frame}
+
+% -----------------------------------------------
+\begin{frame}
+\begin{tiny}
+After the third pulse:
+\begin{eqnarray}
+p_3 
+&=& \lrSquare{p_{\infty} - \lrRound{p_{\infty}- \textcolor{red}{p_2}}
+  \exp\lrRound{-\frac{t_3}{\tau_p}}}\lrRound{1-q} + q,
+%\nonumber \\
+\\
+x_{3} 
+&=& \frac{{\textcolor{blue}{x_{2}}} x_{\infty} \lrSquare{1-p_{\infty} + \lrRound{p_{\infty}- \textcolor{red}{p_{2}}}
+e^{-\frac{t_3}{\tau_p}}}}
+{ {\textcolor{blue}{x_{2}}} + \lrRound{x_{\infty}- \textcolor{blue}{x_{2}}}
+e^{-\frac{t_3}{\tau_x}x_{\infty} }}, 
+%\nonumber \\
+\end{eqnarray}
+
+\end{tiny}
+\end{frame}
+
+
+% -----------------------------------------------
+% \begin{frame}
+% \begin{center}
+% \begin{tabular}{cc}
+% Facilitation & Depression \\
+% \includegraphics[width=0.45\textwidth]{figures/q0dot20omegaStim20Hz_tauRec15msec_tauFac75msec.png}
+% & 
+% \includegraphics[width=0.45\textwidth]{figures/q0dot20omegaStim20Hz_tauRec120msec_tauFac75msec.png}
+% \\
+% \includegraphics[width=0.45\textwidth]{figures/q0dot20omegaStim20Hz_tauRec60msec_tauFac75msec.png}
+% &
+% \includegraphics[width=0.45\textwidth]{figures/q0dot20omegaStim20Hz_tauRec150msec_tauFac75msec.png}
+% \\
+% \includegraphics[width=0.45\textwidth]{figures/q0dot20omegaStim20Hz_tauRec90msec_tauFac75msec.png}
+% &
+% \includegraphics[width=0.45\textwidth]{figures/q0dot20omegaStim20Hz_tauRec210msec_tauFac75msec.png}
+% \end{tabular}
+% \end{center}
+% {\tiny Parameters: , $x_0$=1, $p_0$=0.2, $q$=0.2, $x_{\infty}$=1, $p_{\infty}$=0.2,
+%   $\tau_{f}$ = 75 ms, $\omega_{stim}$=20 Hz.}
+%\caption{Simulations of the system
+%\eqref{eq:occupancy}-\eqref{eq:phi} with $p$-increments of size
+%$q$=0.2. Other parameters specified in the figure labels.}
+%\end{frame}
+
+
+
+\end{document}

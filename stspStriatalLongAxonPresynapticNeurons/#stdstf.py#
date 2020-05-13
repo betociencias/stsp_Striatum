@@ -1,0 +1,7 @@
+import scipy as sc
+import pylab as gr
+
+maxT = 1.0;
+stepT = 1e-3;
+sampTimes= sc.arange(0,maxT,stepT)
+

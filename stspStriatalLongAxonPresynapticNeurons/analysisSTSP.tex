@@ -1,0 +1,295 @@
+%& -shell-escape
+%\documentclass[10pt,landscape]{article}
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[left=2.5cm,right=2.5cm,top=0cm,bottom=2cm,includehead]{geometry}
+
+
+\input{mahvPreamble}
+\hypersetup{
+  pdftitle={Herrera-Valdez et al. Simple model for short-term
+    plasticity}
+}
+%\usepackage{python}
+
+% -----------------------------------------------
+\title{Geometry and dynamics underlying the diversity of short term synaptic plasticities  GABAergic and glutamatergic terminals in striatal neurons}
+
+\author{
+Marco Arieli Herrera Valdez$^1$, Guillermo Olicón$^1$,\\  
+Mario Alberto Arias-García$^2$, Janet Barroso$^2$,  José Bargas$^2$, Elvira Galarraga $^2$\\
+\begin{small}
+{$^1$Departamento de Matemáticas, Facultad de Ciencias, 
+$^2$División de Neurociencias, Instituto de Fisiología Celular, U.N.A.M.}
+\end{small}
+}
+
+\date{Agosto 21, 2016}
+
+% -----------------------------------------------
+% -----------------------------------------------
+% -----------------------------------------------
+% -----------------------------------------------
+\begin{document}
+\maketitle
+
+\section{General rationale}
+
+Define a synaptic contact between two neurons A and B as the set of all synapses where the presynaptic membrane is part of $A$ and the postsynaptic membrane is part of $B$. Each synapse is assumed to have a probability of release that depends on the amount of intracellular calcium $c$ as 
+\begin{equation}
+%p (c;g,c_h)= \frac{1}{1+ \exp \lrSquare{ g_c \lrRound{c_{h}-c} }}
+p (c;a,c_h)= \frac{c^{a}}{c^{a}+c_h^{a}}
+\label{pSynRelease}
+\end{equation}
+where $c_{h}$ is the half-maximal calcium concentration and $g_c$ is a gain parameter.  
+
+The calcium dynamics for a single terminal can be described as 
+\begin{equation}
+\partial_t c = \frac{c_{\infty}-c}{\tau_c} - k_c I_c(t)
+\label{eq:partialtc}
+\end{equation}
+where $c_{\infty}$ is the steady state concentration of intracellular calcium, $I_c$ is the calcium current at the terminal, and $k_c$ is a conversion factor. 
+The range for $c_{\infty}$ can be assumed to be between 0.1 and 0.5 $\mu$M. 
+
+It is possible to derive an equation that describes the dynamics of the probability of release can then be derived taking into consideration equations~\eqref{pSynRelease} and~\eqref{eq:partialtc}. By the chain rule, 
+\begin{eqnarray*}
+\partial_t p &=& \partial_c p \cdot \partial_t c 
+\\
+&=& \frac{a}{c} p(c) \lrRound{1-p(c)}  \lrRound{\frac{c_{\infty}-c}{\tau_c} - k_c I_c(t)}
+\end{eqnarray*}
+However, if the dynamics for $p$ are fast enough, then it should be possible to assume $p = p_{\infty}$.
+
+% ------------------------------------------
+\section{Peaks of the pre- and post-synaptic responses to trains of presynaptic action potentials}
+
+Assume that presynaptic action potentials occur at times $0<t_1<t_2<\ldots<t_n$. Let 
+$x(t)$ and $p(t)$ represent the readily releasable neurotransmitter and the proportion of released neurotransmitter at time $t$, respectively.
+Recall that the dynamics for $p$ and $x$ can be written as
+\begin{eqnarray*}
+\label{modelo}
+\partial_t p &=& \frac{p_{\infty}-p}{\tau_p} + a(1-p) \phi(t)
+\\
+\partial_t x &=& \frac{x_{\infty}-x}{\tau_x} - px \phi(t)
+\\
+\phi(t) &=& \sum_{k=1}^{n} \delta\lrRound{t-t_k}
+\end{eqnarray*}
+In the absence of a pulse the dynamics of $p$ and $x$ are given by
+\begin{eqnarray*}
+\label{pxNoPulseDynamics}
+p(t)&=&p_{\infty}+(p_0-p_{\infty})\exp{\left(\frac{t_0-t}{\tau_p}\right)}
+\\
+x(t)&=&x_{\infty}+(x_0-x_{\infty})\exp{\left(\frac{t_0-t}{\tau_x}\right)}
+\end{eqnarray*}
+where $p(t_0)=p_0$ and $x(t_0)=x_0$ are initial conditions for $p$ and $x$. 
+At each pulse, $p$ and $x$ jump to new initial conditions.  Specifically, 
+at time $t=t_i$, $p$ changes to $a (1-p)$. As a consequence of the change in $p$, $x(t_i)$ changes to $x_i = x(t_i) (1- p_i)$. The amount of neurotransmitter released at time $t=t_i$ is then $x(t_i)- x_i = x(t_i) p_i$.
+
+Assuming that the initial condition $p_0=p_{\infty}$, we have $p(t_1)=p_{\infty}$. We can now consider a new initial condition due to the effect of the term $a(1-p)\phi (t)$ given by
+\[p_1=p(t_1)+a(1-p(t_1)).\]
+In general, the solution for $p$ in each interval $\left[t_n,t_{n+1}\right]$ can be obtained by taking $p^*=p(t_n)$ and $t^*=t_n$ in (\ref{sol1}).
+
+The relation between $p(t_k)$ and the new initial condition at times $t=t_k$ is given by the non-autonomous difference equation
+\begin{equation}
+    \label{DE}
+        \begin{array}{rcl}
+             p(t_{k+1})&=&p_{\infty} + (p_k-p_{\infty})\exp{\left(\frac{t_k-t_{k+1}}{\tau_p}\right)} \\
+             p_{k+1}& = & p(t_{k+1}) + a (1-p(t_{k+1})).
+        \end{array}
+\end{equation}
+
+It can be proved by induction that for $n\geq2$
+\begin{eqnarray*}
+p(t_n)&=&p_{\infty} + a(1-p_{\infty})\sum_{m=0}^{n-2}(1-a)^m \exp{\left(\frac{t_{n-m-1}-t_{n}}{\tau_p}\right)}
+\\ 
+p_{n} &=& p_{\infty} + a \lrRound{1-p_{\infty}} \sum_{m=0}^{n} (1-a)^m \exp \lrRound{\frac{t_{n-m}- t_{n}}{\tau_p}} 
+\end{eqnarray*}
+
+In a similar way, assuming that the initial condition for $x(t)$ lies in the stationary state $x_{\infty}$ one has that $x(t_1)=x_{\infty}$. The jump due to $\phi(t)$ can be measured as $x_1=x(t_1)(1-p_1)$, and in general the quantities $x(t_n)$ and $x_n$ satisfy the non-autonomous difference equation
+\begin{eqnarray*}
+    x(t_{n+1}) & = & x_{\infty} - (x_k-x_{\infty})\exp{\left(\frac{t_k-t_{k+1}}{\tau_x}\right)}
+    \\
+    x_{k+1} & = & x(t_{n+1}) - p_{n+1}x(t_{n+1})
+\end{eqnarray*}
+
+After some cumbersome algebra, an inductive argument yields for $n\geq2$
+\begin{eqnarray*}
+x_{n} 
+&=& x_{\infty} \lrRound{1-p_n}
+\lrSquare{
+1 - p_{n-1}\exp{\frac{t_{n-1}-t_{n}}{\tau_x}} 
+- \sum_{k=2}^{n-1} p_{n-k} \prod_{n-k+1}^{n-1} \lrRound{1-p_j} \exp\lrRound{\frac{t_{n-k}-t_{n}}{\tau_x}}
+}
+\\
+&=& x_{\infty} 
+\lrSquare{
+\lrRound{1-p_n} - \sum_{k=1}^{n-1} p_{n-k} 
+\prod_{n-k+1}^{n} \lrRound{1-p_j} \exp\lrRound{\frac{t_{n-k}-t_{n}}{\tau_x}}
+}
+\end{eqnarray*}
+
+The dynamics of the proportion of activated postsynaptic channels, as proposed by \cite{destexhe1998kinetic}
+\begin{eqnarray*}
+\partial_t y &=& y\lrSquare{\alpha \eta(t) \lrRound{1 -y} - \beta y} 
+\end{eqnarray*}
+where $\eta(t)= \delta(t-t_i) x(t_i) p_i$.
+
+
+
+In the absence of a complete model that generates action potentials, the time course of the calcium current at the terminal can be assumed to be a sum of pulses, each of which behaving like $\alpha$-functions  \citep{}:
+\begin{equation}
+\alpha(t;\tau) = 1_{\lrSet{t\geq0}} \frac{t}{\tau} e^{1-\frac{t}{\tau}}
+\end{equation}
+
+\subsection{Pulses of intracellular calcium concentration}
+
+\begin{eqnarray}
+\partial_t c &=& \frac{c_{\infty} -c}{\tau_c}+ \phi(t)
+\\
+\phi(t) &=& a \sum_{i=1}^{n} \delta\lrRound{t-t_i}
+\end{eqnarray}
+The dynamics in the absence of pulses are given by
+\begin{eqnarray}
+c(t) &=& c_{\infty} + \lrRound{c_0-c_{\infty}} \exp \lrRound{-\frac{t}{\tau_c}}  
+\end{eqnarray}
+If a pulse occurs at time $t$, then $c(t)$ jumps to $c(t) + a$. 
+Let  $c_0 = c_{\infty}$. If a pulse occurs at time $t=t_1$, then let
+\begin{eqnarray}
+c_1 &=& c(t_1) + a = c_{\infty} +a
+\end{eqnarray}
+For $t_1\leq t $:
+\begin{eqnarray}
+c(t) &=& c_{\infty} + \lrRound{c_1-c_{\infty}} \exp \lrRound{\frac{t_1-t}{\tau_c}} 
+\\
+ &=& c_{\infty} + a  \exp \lrRound{\frac{t_1-t}{\tau_c}} 
+\end{eqnarray}
+\begin{eqnarray*}
+c_2 &=& 
+c(t_2) + a 
+\\
+&=&
+c_{\infty} + a \lrRound{1 + \exp \lrRound{\frac{t_1 -t_2}{\tau_c}} }
+\end{eqnarray*}
+For $t_2\leq t $:
+\begin{eqnarray*}
+c(t) &=& 
+c_{\infty} + \lrRound{c_2-c_{\infty}} \exp \lrRound{\frac{t_2-t}{\tau_c}} 
+\\
+ &=& c_{\infty} + a \lrRound{1 + \exp \lrRound{\frac{t_1 -t_2}{\tau_c}} }  \exp \lrRound{\frac{t_2-t}{\tau_c}} 
+ \\
+ &=& c_{\infty} + a \lrSquare{\exp \lrRound{\frac{t_2-t}{\tau_c}}  + \exp \lrRound{\frac{t_1 -t}{\tau_c}} }  
+\end{eqnarray*}
+At $t=t_3$,
+\begin{eqnarray*}
+c_3 &=& 
+c(t_3) + a 
+\\
+&=&
+c_{\infty} + a \lrRound{1 + \exp \lrRound{\frac{t_2-t_3}{\tau_c}}  + \exp \lrRound{\frac{t_1 -t_3}{\tau_c}}}
+\end{eqnarray*}
+In general, for $t\geq t_n$,
+\begin{eqnarray*}
+c(t) &=& 
+c_{\infty} + \lrRound{c_n -c_{\infty}} \exp \lrRound{\frac{t_2-t}{\tau_c}} 
+\\
+ &=& c_{\infty} + a \sum_{k=1}^{n}  \exp \lrRound{\frac{t_k -t}{\tau_c}}
+ \\
+ &=& c_{\infty} + a \exp \lrRound{\frac{ -t}{\tau_c}} \sum_{k=1}^{n}  \exp \lrRound{\frac{t_k }{\tau_c}}
+\end{eqnarray*}
+
+
+
+Assume that a neuron receives $M$ synaptic contacts of the same type (e.g. AMPA, GABA-A).
+
+\section{Linear dynamics}
+
+Let us assume that a neuron receives $N$ synapses, with $n_j$ readily releasable vesicles and $p_j$ the probability of release at the $j$th synapse.  
+Assume that all the synapses are all GABAergic or all glutamatergic, let $p = N^{-1}\sum_{i=1}^N p_i$ and $x = N^{-1}\sum_{i=1}^N x_i$ represent  the average of the 
+
+\begin{eqnarray}
+\partial_t p &=&  \frac{p_{\infty} - p}{\tau_p} + h (1-p) \sum \delta\lrRound{t-t_i}
+\\
+\partial_t x &=&  \frac{x_{\infty} - x}{\tau_x} -  px \sum \delta\lrRound{t-t_i}
+\end{eqnarray}
+
+\subsection{Analysis for $p$}. 
+\begin{eqnarray}
+p (t) 
+&=& \frac{p_{\infty} p_0}{p_0 + \lrRound{p_{\infty} - p_0} \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } 
+\\
+&=& {p_{\infty} }\lrSquare{1 + \lrRound{\frac{p_{\infty} }{p_0} -1} \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } ^{-1}
+\\
+&=& {p_{\infty} }\lrSquare{1 - \lrRound{1- \frac{p_{\infty} }{p_0} } \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } ^{-1}
+\end{eqnarray}
+
+If $p(0)=p_{\infty}$ and there is a pulse at time $t=t_0$, then
+$p(t_0)=p_{\infty} + h \lrRound{1-p_{\infty}} 
+= p_{\infty}\lrRound{1-h} + h$. Before the next pulse at time $t_0<t<t_1$, 
+\begin{eqnarray}
+p (t) &=& {p_{\infty} }\lrSquare{1 + \lrRound{\frac{p_{\infty} }{p_{\infty} -1} \lrRound{1-h} + h} \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } ^{-1}
+\end{eqnarray}
+
+
+
+
+
+\section{Logistic dynamics}
+\begin{eqnarray}
+\partial_t p &=& p \frac{p_{\infty} - p}{\tau_p} + h (1-p) \sum \delta\lrRound{t-t_i}
+\\
+\partial_t x &=& x \frac{x_{\infty} - x}{\tau_x} -  px \sum \delta\lrRound{t-t_i}
+\end{eqnarray}
+
+Analysis for $p$. 
+\begin{eqnarray}
+p (t) 
+&=& \frac{p_{\infty} p_0}{p_0 + \lrRound{p_{\infty} - p_0} \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } 
+\\
+&=& {p_{\infty} }\lrSquare{1 + \lrRound{\frac{p_{\infty} }{p_0} -1} \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } ^{-1}
+\\
+&=& {p_{\infty} }\lrSquare{1 - \lrRound{1- \frac{p_{\infty} }{p_0} } \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } ^{-1}
+\end{eqnarray}
+
+If $p(0)=p_{\infty}$ and there is a pulse at time $t=t_0$, then
+$p(t_0)=p_{\infty} + h \lrRound{1-p_{\infty}} 
+= p_{\infty}\lrRound{1-h} + h$. Before the next pulse at time $t_0<t<t_1$, 
+\begin{eqnarray}
+p (t) &=& {p_{\infty} }\lrSquare{1 + \lrRound{\frac{p_{\infty} }{p_{\infty} -1} \lrRound{1-h} + h} \exp
+  \lrRound{\frac{ -t p_{\infty} }{\tau_p}} } ^{-1}
+\end{eqnarray}
+
+
+
+\section{Log relationship between {\calcium} and probability of release}
+
+Usually concentrations of $\concCa_i$ are expressed in $\log_{10}$ units.  The relationship between ${\concCa_i}$ and the probability of release in a presynaptic terminal is usually described by
+\begin{eqnarray*}
+p(c; c0, b) &=& \frac{\exp\lrSquare{b \lrRound{l-l_0}}}{1+\exp\lrSquare{b \lrRound{l-l_0}}}
+\end{eqnarray*}
+\begin{eqnarray*}
+l= \log_{10} c &=& \lrRound{\log_{10} e }\lrRound{\ln c }
+\end{eqnarray*}
+Then 
+\begin{eqnarray*}
+e^l &=& \lrRound{e^{\ln c  }}^ {\log_{10} e  }
+= c^{ \log_{10} e } 
+\end{eqnarray*}
+so
+\begin{eqnarray*}
+p(c; c_h, b) 
+&=& \frac{c^{ b \log_{10} e } }{c^{ b \log_{10} e }+c_h^{ b \log_{10} e }}
+\\
+&=& \frac{c^{a} }{c^{a}+c_h^{a}}
+\end{eqnarray*}
+with $a=b \log_{10} e$.
+
+\bibliographystyle{plainnat}
+\bibliography{membraneBiophysics}
+\end{document}

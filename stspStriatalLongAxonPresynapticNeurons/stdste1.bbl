@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hennig(2013)]{hennig2013Theoretical}
+Matthias~H Hennig.
+\newblock Theoretical models of synaptic short term plasticity.
+\newblock \emph{Frontiers in Computational Neuroscience}, 7\penalty0 (45),
+  2013.
+\newblock ISSN 1662-5188.
+\newblock \doi{10.3389/fncom.2013.00045}.
+\newblock URL
+  \url{http://www.frontiersin.org/computational_neuroscience/10.3389/fncom.2013.00045/abstract}.
+
+\end{thebibliography}

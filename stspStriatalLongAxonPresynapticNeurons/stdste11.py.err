@@ -1,0 +1,9 @@
+/usr/lib/python2.7/dist-packages/numpy/lib/utils.py:139: DeprecationWarning: `scipy.lib.blas` is deprecated, use `scipy.linalg.blas` instead!
+  warnings.warn(depdoc, DeprecationWarning)
+/usr/lib/python2.7/dist-packages/numpy/lib/utils.py:139: DeprecationWarning: `scipy.lib.lapack` is deprecated, use `scipy.linalg.lapack` instead!
+  warnings.warn(depdoc, DeprecationWarning)
+.
+----------------------------------------------------------------------
+Ran 1 test in 4.873s
+
+OK

@@ -1,0 +1,726 @@
+%& -shell-escape
+\documentclass[8pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+%\setbeamertemplate{note page}[plain]
+%\setbeameroption{show notes on second screen}
+
+\input{mahvPreambleBeamer}
+\hypersetup{
+  pdftitle={Herrera-Valdez et al. Simple model for short-term
+    plasticity}
+}
+\usepackage{python}
+
+% -----------------------------------------------
+\title[Geometría y dinámica de la plasticidad sináptica]{Geometría y
+  dinámica detrás de la diversidad en plasticidad sináptica de corto
+  plazo en terminales GABAérgicas del estriado}
+
+\author[Marco Arieli Herrera Valdez, marcoh@ciencias]{Marco Arieli Herrera Valdez \\ 
+\textit{Matemáticas, Facultad de Ciencias, U.N.A.M.}\\
+\vspace{10pt}
+\small{Colaboradores: \\
+Janet Barroso, Elvira Galarraga, José Bargas, 
+\textit{Instituto de Fisiología Celular, U.N.A.M., \\
+Guillermo Olicón, Imperial College, UK
+}}
+}
+\date{Febrero 23, 2017}
+
+% -----------------------------------------------
+% -----------------------------------------------
+% -----------------------------------------------
+% -----------------------------------------------
+\begin{document}
+
+
+
+% -----------------------------------------------
+\begin{frame}
+\maketitle
+\end{frame}
+
+\section{Resúmen}
+\begin{frame}
+
+\textbf{Variedad en plasticidad sináptica como función del balance entre la ocupación y la probabilidad de liberación de vesículas.}
+
+\vspace{13pt} La comunicación sináptica en terminales GABAérgicas
+depende de factores que incluyen el número de vesículas listas para
+liberarse y de su probabilidad de liberación.  Registros de corriente
+postsináptica en sinapses de largo alcance dentro del estriado
+muestran patrones de depresión, facilitación, o combinación de las
+anteriores, que pueden, \textit{a priori}, asociarse a distintos tipos
+de terminales en distintos tipos de interneuronas (Barroso \textit{et
+  al.}). Para entender mejor los mechanismos detrás de los patrones
+descritos anteriormente, planteamos un sistema dinámico que nos
+permite clasificar, de manera funcional, las terminales descritas
+anteriormente con base en combinaciones de parámetros asociados al
+incremento en la probabilidad de liberación y la capacidad de
+re-ocupación del depósito de vesículas listas para liberarse.
+\end{frame}
+
+% __________________________________________________
+%
+\section{Modelo simple de plasticidad a corto plazo}
+% __________________________________________________
+
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Plasticidad sináptica de corto plazo}{
+  \begin{minipage}{0.5\textwidth}
+    \begin{center}
+      \only<1>{\includegraphics[width=0.9\textwidth]{./figuresSynapse/hippocampalSTP+Fig2+Roy+etal+2013}
+        \\    
+        \fuente{Roy, \textit{et al.}, 2013}
+      }
+      \only<2->{\includegraphics[width=0.9\textwidth]{./figuresSynapse/synapseHenning2014Fig1}
+        \\    
+        \fuente{Henning, \textit{et al.}, 2014}
+      }
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.5\textwidth}
+    \uncover<1-3>{\textcolor{blue}{Plasticidad a corto plazo (PCP)}:
+      cambio (def. funcional) en la amplitud de la corriente post-synaptica como
+      consecuencia de actividad reciente en las neuronas que forman la
+      sinápsis.  }
+
+    \vspace{10pt}
+    \uncover<2-3>{\textcolor{blue}{PCP} depende de la estructura de la
+      sinápsis, la arquitectura de la zona activa, los perfiles de
+      concentración del {\calcium} en la terminal, la probabilidad de
+      liberación de vesículas, la difusión de neurotransmisor en el
+      hueco sináptico, y la activación de receptores post-sinápticos.}
+    
+    \vspace{10pt}
+    \uncover<3->{Es  \textbf{difícil}, o
+      \textit{imposible}  estimar parámetros para modelos
+      biofísicos-bioquímicos detallados por limitaciones técnicas, y
+      los modelos existentes son complejos y difíciles de analizar.}
+
+  \end{minipage}
+}
+
+% oooooooooooooooooooooooooooooo
+\section{Plasticidad sináptica}
+
+
+\begin{frame}
+\frametitle{Interconectividad de largo alcance dentro del estriado}
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[height=0.5\textheight]{./figuresSynapse/Fig-2-Local-interactions-of-striatal-interneurons-Scheme}
+&
+\includegraphics[height=0.5\textheight]{./figuresSynapse/Fig-5-Synergistic-effect-of-the-cell-speci-fi-city-of-corticostriatal-STDPs-on-the}
+\\
+&
+\source{Fino \& Venance, 2011}
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Interconectividad de largo alcance dentro del estriado}
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[height=0.5\textheight]{./figuresSynapse/striatalInterneuronLongRangeConnection2}
+&
+\includegraphics[height=0.5\textheight]{./figuresSynapse/striatalInterneuronLongRangeConnection1}
+\\
+\source{Rafalovich, et al. 2015}
+&
+\source{Tepper, Tecuapetla, Koós, Ibañez-Sandoval, 2010}
+\end{tabular}
+\end{center}
+\end{frame}
+
+
+% oooooooooooooooooooooooooooooo\
+\begin{frame}
+\frametitle{Perfiles de plasticidad sináptica en neuronas espinosas del estriado}
+\begin{center}
+\includegraphics[height=0.9\textheight]{./figuresSynapse/Barroso-Flores+etal+Fig1}
+\\
+\source{Barroso-Flores, Herrera-Valdez, López-Huerta, Galarraga, Bargas, 2015}
+\end{center}
+\end{frame}
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Respuestas postsinápticas como función de la intensidad del estímulo y reclutamiento}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{./figuresSynapse/Barroso-Flores+etal+Fig2}
+\end{center}
+\end{frame}
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{./figuresSynapse/dopamineDepletionConnectivityChanges1}
+\\
+\vspace{0.1\textheight}
+\uncover<2>{
+¿Qué pasa con la plasticidad sináptica en enfermos de Parkinson?
+}
+\end{center}
+\end{frame}
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Lesiones para inducir síntomas de Parkinson}
+\begin{center}
+\begin{tabular}{p{0.4\textwidth} p{0.4\textwidth}}
+Lesión unilateral en SN/VTA 
+& Prueba de comportamiento 2 semanas después
+\end{tabular}
+\includegraphics[width=\textwidth]{./figuresSynapse/Barroso-Flores+etal+Fig3}
+\end{center}
+\end{frame}
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Cambios en plasticidad en respuesta a la falta de dopamina, p1}
+\begin{center}
+\includegraphics[height=0.9\textheight]{./figuresSynapse/Barroso-Flores+etal+Fig4}
+\end{center}
+\end{frame}
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Cambios en plasticidad en respuesta a la falta de dopamina, p2}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{./figuresSynapse/Barroso-Flores+etal+Fig5}
+\end{center}
+\end{frame}
+
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Modelo simple de facilitación-depresión}
+\tikzstyle{na} = [baseline=-.5ex]
+
+{\textcolor{green}{Facilitación}: Atribuida principalmente a incrementos
+  en la probabilidad de liberación de vesículas,  debido a
+  incrementos de calcio residual en la terminal}
+
+\vspace{10pt}
+{\textcolor{red}{Depresión}: Atribuida principalmente a decrementos
+  en el número de vesículas listas para liberar neurotransmisor
+  (VLLs). 
+}
+
+\vspace{10pt}
+\uncover<2->{Proxy de plasticidad (Liley and North (1953), De Robertis
+  and Bennet (1955), Tsodyks \& Markram (1998), etc): 
+
+\begin{equation*}
+  \tikz[baseline]{\node[fill=blue!60,anchor=base] (t1){$\eta$};}
+  = 
+  \tikz[baseline]{\node[fill=red!60,anchor=base] (t2){$x$};}
+  \tikz[baseline]{\node[fill=green!60,anchor=base] (t3){$p$};}
+\end{equation*}
+}
+\begin{itemize}[<+-| alert@+>]
+  \item<3-> Proporción máxima de vesículas liberadas
+    \tikz[na] \node[coordinate] (n1) {};
+  \item<4-> Ocupación de la zona de VLLs
+    \tikz[na] \node[coordinate] (n2) {};
+  \item<5-> Probabilidad de liberación
+    \tikz[na]\node [coordinate] (n3) {};
+\end{itemize}
+\begin{tikzpicture}[overlay]
+  \path[->]<3-> (n1) edge [out=0, in=1800] (t1);
+  \path[->]<4-> (n2) edge [out=0, in=-135] (t2);
+  \path[->]<5-> (n3) edge [out=0, in=-90] (t3);
+\end{tikzpicture}
+\source{Herrera-Valdez, Barroso}
+
+\end{frame}
+
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+  \frametitle{Modelo simple de facilitación-depresión 2}
+  \tikzstyle{na} = [baseline=-.5ex]
+  
+  \begin{small}
+    Asuma que una (inter)neurona dispara potenciales de acción en
+    tiempos  $t_0,...,t_n$. La dinámica de liberación de vesículas en
+    la terminal está dada por
+    \begin{equation*}
+      \partial_t x = 
+        \tikz[baseline]{\node[anchor=base] (t0){$x^{k_x}$};} 
+        \frac{        \lrRound{
+          \tikz[baseline]{\node[anchor=base] (t1){$x_{\infty}$};} -x
+        }
+      }
+      {
+        \tikz[baseline]{\node[anchor=base] (t2){$\tau_{r}$};}
+      } 
+      - p x \sum_{k=0}^n \delta \lrRound{t-t_k}, 
+      \qquad 
+      \partial_t p 
+      =  p^{k_p}
+      \frac{   
+        \tikz[baseline]{\node[anchor=base] (t4){$p_{\infty}$};} 
+        -
+        \tikz[baseline]{\node[anchor=base] (t3){$p$};} 
+      }
+      {\tikz[baseline]{\node[anchor=base] (t5) {$\tau_{p}$};}} 
+      + \tikz[baseline]{\node[anchor=base] (t6){$h_k$};}
+      \lrRound{1-p} 
+      \sum_{k=1}^n \delta \lrRound{t-t_k}, 
+    \end{equation*}
+  \end{small}
+  \begin{minipage}{0.5\textwidth}
+    \begin{small}
+      % donde $h_k$ depende de $t_{k} -t_{k-1}$ para $k=1,3,...,n$ en
+      % una función de la forma
+      % \begin{equation}
+      %   h_k= \frac{1}{1+ \frac{t_k - t_{k-1}}{m}} 
+      % \end{equation}
+      
+      \begin{itemize}[<+-| alert@+>]
+      \item<2-> Proporción de ocupación de sitios de liberación
+        inmediata (dinámica logística)
+        \tikz[na] \node[coordinate] (n0) {};
+      \item<3-> Estado estable de ocupación
+        \tikz[na] \node[coordinate] (n1) {};
+      \item<4-> Constante de tiempo de reocupación
+        \tikz[na] \node[coordinate] (n2) {};
+      \end{itemize}
+    
+    \end{small}
+  \end{minipage}%
+  \begin{minipage}{0.5\textwidth}
+    \begin{small}
+      \begin{itemize}[<+-| alert@+>]
+      \item<5-> Probabilidad de liberación
+        \tikz[na] \node[coordinate] (n3) {};
+      \item<6-> Estado estable de $p$
+        \tikz[na] \node[coordinate] (n4) {};
+      \item<7-> Constante de tiempo de $p$
+        \tikz[na] \node[coordinate] (n5) {};
+      \item<8-> Factor de facilitación
+        \tikz[na]\node [coordinate] (n6) {};
+      \end{itemize}
+    \end{small}
+  \end{minipage}
+
+  \begin{tikzpicture}[overlay]
+    \path[->]<2> (n0) edge [out=0, in=90] (t0) ;
+    \path[->]<3> (n1) edge [out=0, in=90] (t1);
+    \path[->]<4> (n2) edge [out=0, in=-45] (t2);
+    \path[->]<5> (n3) edge [out=0, in=0] (t3);
+    \path[->]<6> (n4) edge [out=0, in=180] (t4);
+    \path[->]<7> (n5) edge [out=0, in=0] (t5);
+    \path[->]<8> (n6) edge [out=0, in=90] (t6);
+  \end{tikzpicture}
+
+  \source{Barroso-Flores, Herrera-Valdez, et al. 2015; Herrera-Valdez, Barroso, Olicón, Bargas, \textit{en preparación}.}
+\end{frame}
+
+
+
+% __________________________________________________
+%
+\section{Dinámica de facilitación y depresión por separado}
+% __________________________________________________
+%
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Análisis cualitativo de facilitación}{
+  \begin{minipage}{0.6\textwidth}
+    \begin{center}
+      \includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/pLinearPPWPulse1}
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.4\textwidth}
+    Punto fijo con o sin pulso:
+    \begin{eqnarray*}
+      0 =  \partial_t p &=&  \frac{p_{\infty}-p}{\tau_p} + h (1-p) \delta(t-t_i)
+      \\
+      &=&  \underbrace{\lrRound{ \frac{p_{\infty}}{\tau_p}
+          +h}}_{\text{cambio positivo en $p$ para $p=0$}} 
+      -p \underbrace{\lrRound{\frac{1}{\tau_p} +h}}_{\text{Tasa de
+          cambio}} 
+    \end{eqnarray*}
+    \uncover<2->{
+    Por lo que el punto fijo satisface:
+    \begin{eqnarray*}
+      p_* &=& \frac
+      {\lrRound{ p_{\infty} + \tau_p h}}
+      {\lrRound{1 +\tau_p h}}
+    \end{eqnarray*}
+  }
+  \end{minipage}
+\begin{small}
+  \uncover<3->{
+  \bigskip
+  Cuando hay un potencial de acción, 
+  \begin{enumerate}
+  \item Con o sin pulso, la pendiente es negativa, el punto fijo es
+    atractor. 
+  \item El punto fijo de $p$ se mueve un poco hacia la
+    derecha. I.e. la probabilidad de liberación  ``asintótica'' crece durante el pulso. 
+  \item El cambio en $p$ es más rápido. 
+  \end{enumerate}
+}
+\end{small}
+}
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Análisis cualitativo de depresión}{
+  \begin{minipage}{0.6\textwidth}
+    \begin{center}
+      \only<1>{\includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/xLogisticPPWPulse1}}
+      \only<2-3>{\includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/xLogisticPPWPulse2}}
+      \only<4->{\includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/xLogisticPPWPulse3}}
+    \end{center}
+  \end{minipage}%
+  \begin{minipage}{0.4\textwidth}
+    Punto fijo:
+    \begin{eqnarray*}
+      0 =  \partial_t x &=&  x \frac{x_{\infty}-x}{\tau_x} - px \alpha\lrRound{t-t_k}
+      %\\ &=&  x \lrRound{ \frac{x_{\infty} -x}{\tau_x} - p \alpha\lrRound{t-t_k}}
+      \\ &\downarrow& \\
+      0 &=&  x \lrRound{ \frac{x_{\infty}- p \tau_x \alpha \lrRound{t-t_k} -x}{\tau_x} }.
+    \end{eqnarray*}
+    Hay entonces dos puntos fijos: 
+    \begin{equation*}
+      x_{1*} = 0
+      \quad 
+      x_{2*} = x_{\infty}- p \tau_x \alpha \lrRound{t-t_k}
+    \end{equation*}
+    Por tanto, la ocupación se aleja de 0, y se acerca a $x_{2*}$. La
+    tasa de cambio primero acelera y
+    después desacelera.
+  \end{minipage}
+  
+  \begin{enumerate}
+  \item<2-> La pendiente es negativa sólo para algunos valores de $\tau_x$,
+    así que el punto fijo es  estable sólo en esos casos. 
+  \item<3-> Cuando hay un potencial de acción, 
+    \begin{enumerate}
+    \item<4->El punto fijo $x_{2*}=x_{\infty}- p \tau_x>x_{\infty}$ es
+      atractor cuando $x_{\infty}/p > \tau_x$. Si $\tau_x$ sobrepasa a
+      $x_{\infty}/p$ hay una bifurcación ``instantánea'' (no hay
+      atractor) que se puede entender en términos de la constante de
+      evolución $x_{\infty}/\tau_x$: $x$ tiene un valor atractor si
+      $x_{\infty}/\tau_x>p$.
+    \end{enumerate}
+  \end{enumerate}
+}
+
+
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Soluciones analíticas y predicción de pulsos}{
+
+\begin{minipage}{0.5\textwidth}
+\begin{small}
+Consideremos la versión del sistema definida como
+\begin{eqnarray*}
+\partial_t x &=& \frac{x\lrRound{1-x}}{\tau_{r}} 
+-  p x \alpha\lrRound{t-t_i} ,
+\\
+\partial_t p &=&\frac{p_{\infty}-p}{\tau_{f}} 
++ h_i \lrRound{1-p}   \textcolor{blue}{\alpha\lrRound{t-t_i}},
+\label{eq:prelease}
+\\
+\textcolor{blue}{\alpha \lrRound{t-t_k}} &=& 1 \textrm{ si $t=t_{k}$, 0 si $t\neq t_k$}.
+\label{eq:prelease}
+\end{eqnarray*}
+
+\uncover<2->{
+Sean $(x_k,p_k) = (x(t_k),p(t_k))$ los estados del sistema 
+al tiempo del $k$esimo potencial de acción.  
+
+La dinámica de $(x,p)$ entre pulsos $t \in (t_i, t_{i+1})$ satisface que}
+\begin{eqnarray*}
+\uncover<2->{
+p(t) 
+&=&  p_{\infty} - \lrRound{p_{\infty}- p_i}
+   \exp\lrRound{-\frac{(t-t_i)}{\tau_p}}. }
+\label{pLinearSolution}
+\\
+\uncover<3->{
+x(t) 
+&=& \frac{x_{\infty} {x_i}}{{x_i} + \lrRound{x_{\infty}- x_i}
+\exp\lrRound{- (t-t_i) x_{\infty} / \tau_x }},}
+\label{xLogisticSolution}
+\end{eqnarray*}
+
+
+\uncover<4->{
+Al tiempo del $(k+1)$ésimo potencial de acción en $t=t_{k+1}$, el
+estado $(x,p)$ cambia al valor
+\begin{eqnarray*}
+x_{k+1} 
+&=& \textcolor{red}{\lrRound{1-p_{k+1}}} \frac{x_{\infty} {x_{k}} }{{x_{k}} + \lrRound{x_{\infty}- x_{k}}
+\exp\lrRound{- (t_{k+1}-t_{k}) x_{\infty} / \tau_x }}
+\\
+p_{k+1} 
+&=& \textcolor{green}{\lrRound{1+p_{k+1} h_{k+1}}} \lrSquare{{p_{k}} + \lrRound{p_{\infty}- p_{k}}
+\exp\lrRound{- (t_{k+1}-t_{k})  / \tau_p }} 
+\end{eqnarray*}
+
+Siguiendo esta relación de recurrencia, es posible escribir una
+expresión explícita para $(x,p)$ en cualquier tiempo $t$. 
+}
+\end{small}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+  \uncover<2->{\includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/pSolutionWPulse1}}
+  \uncover<3->{\includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/xLogisticSolutionWPulse1}}
+\end{center}
+
+\end{minipage}
+}
+
+
+% __________________________________________________
+%
+\section{Simulaciones con distintas dinámicas}
+% __________________________________________________
+% oooooooooooooooooooooooooooooo
+\titledSlide{Simulaciones con pulsos contínuos}{
+\begin{minipage}{0.5\textwidth}
+\begin{small}
+Consideremos la versión del sistema definida con pulsos contínuos
+\begin{eqnarray*}
+\partial_t x &=& \frac{x\lrRound{1-x}}{\tau_{r}} 
+-   \sum_{i=1}^n p x \alpha_x \lrRound{t-t_i} ,
+\\
+\partial_t p &=&\frac{p_{\infty}-p}{\tau_{f}} 
++\lrRound{1-p} \sum_{i=1}^n h_i    \textcolor{blue}{\alpha_p \lrRound{t-t_i}},
+\label{eq:prelease}
+\\
+\textcolor{blue}{\alpha_j \lrRound{t-t_k}} &=& \frac{t-t_k}{\tau}
+\exp\lrRound{1-\frac{t-t_k}{\tau}} \textrm{ si $t\geq t_{k}$, 0 si $t<t_k$}. 
+\label{eq:prelease}
+\end{eqnarray*}
+$j \in \lrSet{x,p}$, 
+$k=1,...,n$ para $\alpha_p$ y $k=0,...,n$ para $\alpha_x$. 
+\end{small}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{figuresDynamicalSystems/alphaFunctionTau1.png}
+\end{center}
+\end{minipage}
+
+% \begin{center}
+%   \includegraphics[width=0.9\textwidth]{figuresSynapse/simulationFacilitationXP.png}
+% \end{center}
+}
+
+% oooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Modelo simple de facilitación-depresión}
+\begin{center}
+\includegraphics[height=0.9\textheight]{./figuresSynapse/Barroso-Flores+etal+Fig6}
+\end{center}
+\end{frame}
+
+
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Transición entre perfiles}{
+\begin{center}
+\only<1>{\includegraphics[width=1.1\textwidth]{figuresSynapse/taux=1_taup[1-90]_h=0dot1_xa=0dot9_pa=0dot3.png}}\only<2>{\includegraphics[width=1.1\textwidth]{figuresSynapse/taux=10_taup[1-90]_h=0dot1_xa=0dot9_pa=0dot3.png}}\only<3>{\includegraphics[width=1.1\textwidth]{figuresSynapse/taux=20_taup[1-90]_h=0dot1_xa=0dot9_pa=0dot3.png}}\only<4>{\includegraphics[width=1.1\textwidth]{figuresSynapse/taux=30_taup[1-90]_h=0dot1_xa=0dot9_pa=0dot3.png}}
+\end{center}
+}
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Perfiles bifásicos}{
+\begin{center}
+\only<1>{\includegraphics[width=1.1\textwidth]{figuresSynapse/taux=30_taup[1-285]_h=0dot1_xa=1_pa=0dot1}}\only<2>{\includegraphics[width=1.1\textwidth]{figuresSynapse/taux=45_taup[1-285]_h=0dot1_xa=1_pa=0dot1}}
+\end{center}
+}
+
+
+
+% __________________________________________________
+%
+\section{Conclusiones}
+% __________________________________________________
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Resúmen}{
+\begin{itemize}
+\item<1-> El análisis geométrico permite establecer nociones precisas
+  sobre la dependencia de $xp$ en la interacción entre la probabilidad de liberación, la
+  ocupación, el cambio en $p$ por pulso, y el intervalo inter-spike. 
+\item<2-> El modelo propuesto reproduce los perfiles de facilitación,
+  depresión, y bifásico.
+\item<3-> El balance entre las constantes de tiempo de ocupación y
+  probabilidad de liberación determina en muchos casos si hay
+  facilitación o depresión. 
+\item<4-> Sin embargo, a veces el cambio en la
+  probabilidad dado un potencial de acción determina si hay
+  facilitación o depresión  
+\end{itemize}
+}
+
+
+% oooooooooooooooooooooooooooooo
+\titledSlide{Resúmen}{
+Gracias.
+}
+
+
+% __________________________________________________
+%
+\section{Cálculos en más detalle}
+% __________________________________________________
+% oooooooooooooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Soluciones analíticas y predicción de pulsos: $p$}
+\begin{small}
+In general, for $t \in (t_{m},t_{m+1})$
+\begin{eqnarray}
+p(t)
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+\sum_{k=1}^{m} 
+h_k \lrSquare{
+\prod_{l=k+1}^{m}  
+\lrRound{1- h_{l}}} 
+\exp \lrRound{-\frac{t-t_k}{\tau_p}}. 
+\label{eq:pBetweenAP}
+\end{eqnarray}
+and at  $t=t_{m+1}$, 
+\begin{eqnarray}
+p(t_{m+1})
+&=&h_{m+1} + \lrRound{1-h_{m+1}}
+\lrSet{
+ p_{\infty} + \lrRound{1-p_{\infty}} 
+\sum_{k=1}^{m} 
+h_k \lrSquare{
+\prod_{l=k+1}^{m}  
+\lrRound{1- h_{l}}} 
+\exp \lrRound{-\frac{t_{m+1}-t_k}{\tau_p}}
+}. 
+\label{eq:pAP}
+\end{eqnarray}
+
+\textbf{Simplification.} 
+Assume that $h_k =h$ for
+$k=1,...,n$.  Then, between action potentials occuring at times $t_m$
+and $t_{m+1}$,  equation \eqref{eq:pBetweenAP} simplifies to
+\begin{eqnarray*}
+p(t)
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+\sum_{k=1}^{m} 
+h \lrSquare{
+\prod_{l=k+1}^{m}  
+\lrRound{1- h}} 
+\exp \lrRound{-\frac{t-t_k}{\tau_p}}. 
+\nonumber \\ 
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+h \sum_{k=1}^{m} 
+\lrRound{1- h}^{m-k} 
+\exp \lrRound{-\frac{t-t_k}{\tau_p}}. 
+\end{eqnarray*}
+At $t=t_{m+1}$, the probability of release is
+\begin{eqnarray*}
+p(t_{m+1})
+&=&
+p_{\infty} + (1-p_{\infty}) 
+h \sum_{k=1}^{m} 
+\lrRound{1- h}^{m-k} 
+\exp \lrRound{-\frac{t_{m+1}-t_k}{\tau_p}}. 
+\end{eqnarray*}
+\end{small}
+\end{frame}
+
+
+% oooooooooooooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Simplificación 2: $p(t)$ para intervalos entre PAs constantes}
+\begin{small}
+If the interspike intervals are such that $\delta = t_{m} - t_{m-1}$
+for all $m \in \lrSet{1,...,n}$, then  the equation \eqref{eq:pBetweenAP}
+simplifies further to
+\begin{eqnarray*}
+p(t)
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+F(h,\delta,m)
+\end{eqnarray*}
+where 
+\begin{eqnarray*}
+F(h,\delta, m) 
+&=& 
+h 
+\frac
+{ \lrRound{1- h}^{m+1}
+\exp \lrRound{- m \delta / \tau_p}
+- {\exp \lrRound{  \delta / \tau_p}}
+}
+{\lrRound{1- h} - \exp \lrRound{ \delta / \tau_p}}
+\end{eqnarray*}
+At $t=t_{m+1}$, 
+\begin{eqnarray*}
+p(t_{m+1})
+&=&
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t_{m+1}-t_{m}}{\tau_p}}
+F(h,\delta,m)
+\end{eqnarray*}
+\end{small}
+\end{frame}
+
+
+% oooooooooooooooooooooooooooooooooooooooo
+\begin{frame}
+\frametitle{Análisis de ocupación en respuesta a pulsos}
+
+En general, para el $n$ésimo pulso,
+\begin{eqnarray}
+x_n
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}^{n+1} 
+}
+{
+\lrRound{1-p}^{n} 
++ p
+\sum_{i=1}^{n} \lrRound{1-p}^{n-i} \exp\lrSquare{- (t_n-t_{n-i}) r_x }
+}
+\label{tnOccup1}
+\\
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}
+}{
+1
++ p
+\sum_{i=1}^{n} \lrRound{1-p}^{-i} \exp\lrSquare{- (t_n-t_{n-i}) r_x }
+}
+\label{tnOccup2}
+\\
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}
+}{
+1
++ p \exp\lrSquare{- t_n r_x}
+\sum_{i=1}^{n} \lrRound{1-p}^{-i} \exp\lrSquare{t_{n-i} r_x }
+}
+\label{tnOccup3}
+\end{eqnarray}
+\end{frame}
+
+
+\end{document}

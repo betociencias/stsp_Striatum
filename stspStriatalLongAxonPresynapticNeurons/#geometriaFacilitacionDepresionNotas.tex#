@@ -1,0 +1,26 @@
+
+\textbf{Slide 1}
+1. Plasticidad:  caracterización mediante el cambio en corriente
+post-synáptica.
+2. Biofísica y bioquímica asociadas con espacios de parámetros
+difíciles de caracterizar, experimentalmente, o indirectamente
+optimizando con técnicas matemáticas.
+
+\textbf{Slide 2}
+1. Facilitación: Cambios en la probabilidad de liberación
+2. Depresión:  Decrementos en número de vesículas listas para liberarse
+3. 1 y 2 sugieren que xp es una variable importante para tratar de
+elucidar mecanismos. I.e. sistema bidimensional para explicar
+variabilidad en pcp
+
+\textbf{Slide 3}
+1. Dos variables de estado: x y p. Ambas tienden hacia un estado
+estable, gobernadas cada por una constante de tiempo, y por una regla
+de cambio (px para x, h(1-p) para p). 
+2. Las variables en un principio pueden tener dinámica logística
+(tasa de cambio sigmoidal)
+
+\textbf{Slide 4}
+1. Los puntos fijos son importantes porque representan estados de
+no-cambio.
+2. 

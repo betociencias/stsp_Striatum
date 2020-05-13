@@ -1,0 +1,814 @@
+%& -shell-escape
+%\documentclass[8pt]{beamer}
+%\input{mahvPreambleBeamer}
+%\documentclass[10pt]{article}
+\documentclass[11pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\input{mahvPreamble}
+\hypersetup{
+  pdftitle={Herrera-Valdez et al. Simple model for short-term
+    plasticity}
+}
+\usepackage{python}
+\usepackage[left=2.5cm,right=2.5cm,top=0cm,bottom=2cm]{geometry}
+
+
+%0. El balance entre la facilitación y la depresión pre-sináptica a corto plazo explica la variabilidad de respuestas postsinápticas en terminales estriato-estriatales
+
+% 1. "Geometría y dinámica detrás de la interacción entre facilitación
+% y depresión pre-sináptica en terminales estriato-estriatales"  
+
+% 2. "Geometría y dinámica detrás de la diversidad en plasticidad sináptica de corto plazo en terminales GABAérgicas del estriado"
+
+% 3. "Análisis geométrico y simulación de la interacción entre facilitación y depresión presináptica en el núcleo estriado"
+
+% 4. "Análisis geométrico y simulación de la interacción entre facilitación y depresión presináptica en terminales estriato-estriatales"
+
+
+\begin{document}
+
+
+\begin{flushleft}
+\begin{Large}
+The balance between pre-synaptic short-term facilitation and
+depression explains the variability of observable responses in striato-striatal
+GABAergic terminals.
+\end{Large}
+\\
+% \begin{large}
+% Marco Arieli Herrera Valdez $^{1}$, 
+% Janet Barroso $^{2}$, 
+% José Bargas $^{2}$
+% \end{large}
+% \\
+% $^{1}$ \textit{Instituto de Matemáticas, Universidad Nacional Autónoma
+% de México, México, D.F. 04510, México}
+% \\
+% $^{2}$ \textit{Instituto de Fisiología Celular, Universidad Nacional Autónoma
+% de México, México, D.F. 04510, México}
+\end{flushleft}
+
+
+
+% -----------------------------------------------
+\section{Simple model of short-term plasticity}
+
+
+Assume that a presynaptic cell fires action potentials at times $t_k$,
+$k =0,1,...,N$, with interspike intervals $y_{k} = t_{k}-t_{k-1}$, $k=1,...,N$. 
+Let $x$ be the occupancy of the readily releasable pool and $p$ the
+probability of release. The presynaptic release
+can then be described by two variables with dynamics given by
+\begin{eqnarray}
+\partial_t x &=& \frac{x\lrRound{1-x}}{\tau_{r}} -  p x \sum_{i=1}^{N} \phi\lrRound{t-t_i} ,
+\label{eq:occupancy}
+\\
+\partial_t p &=&\frac{p_{\infty}-p}{\tau_{f}} + \lrRound{1-p}  \sum_{i=1}^{N}
+h_i \phi \lrRound{t-t_i},
+\label{eq:prelease}
+\end{eqnarray}
+where $x_{\infty}$, $p_{\infty}$, $\tau_{r}$ and $\tau_{f}$, represent
+the steady state occupancy, the steady state probability of release,
+and the recovery and facilitation time constants, respectively. Note
+the equation for occupancy has logistic dynamics between pulses with
+two limiting values 0 and $x_{\infty}$, which are, respectively, repelling and
+attractor states for $x$.   
+The
+occupancy and probability of release can be thought of as the
+depression and facilitation variables, respectively. The function
+$\phi$ is a small pulse triggered by presynaptic action potentials
+that enables changes in both, the occupancy and the probability of
+release.  The increase in $p$ at a spike time $t_i$ is a fraction
+$h_i$ of $1-p$ and 
+could, a priori, depend on the interval of time between the current,
+and the last presynaptic action
+potential \citep[see][for a review]{hennig2013Theoretical}.
+
+The steady states $x_{\infty}$ and $p_{\infty}$ could increase or decrease to
+model long-term enhancement or depression, respectively. Note that
+setting the steady state value of occupancy to one, is equivalent to
+assume that long term enhancement could be due only to an increase in
+the steady state probability of release.  Note then that the dynamics
+of $x$ capture depression by depletion of the readily releaseable pool
+of vesicles, whereas the dynamics of $p$ capture facilitation by
+accumulation of calcium or some other factor that increases the
+probability of vesicle release. 
+
+
+\subsection{Enhancement dynamics}
+
+Between action potentials,
+the dynamics of $p$ are given by
+\begin{equation}
+  p(t) = p_{\infty} - \lrRound{p_{\infty} - p_0} \exp \lrRound{-t/ \tau_p}
+\end{equation} 
+where $p_0$ is the initial condition.  Assume that $p(0)=p_{\infty}$ and
+that presynaptic actions potentials occur at a times
+$0<t_0<t_1<...<t_n$, after a long time without firing. The probability
+of release does not change after the first action potential. At each
+action potential after $t_0$, 
+\begin{displaymath}
+p \mapsto p+ h_1 (1-p)  = h_1 +
+(1-h_1) p.
+\end{displaymath}
+Then,  
+\begin{equation}
+p(t_1)= h_1 + (1-h_1) p_{\infty}
+\end{equation}
+which represents a new initial contidion for $p$. For $t \in 
+(t_1,t_2)$, the dynamics of $p$ are then given by
+\begin{eqnarray}
+p(t) 
+&=&
+p_{\infty} - \lrRound{p_{\infty} - p(t_1) }\exp
+\lrRound{-\frac{t-t_1}{\tau_p}},
+\\ 
+&=& p_{\infty} - \lrSquare{p_{\infty} - p_{\infty} - h_1   (1-p_{\infty})}
+\exp \lrRound{-\frac{t-t_1}{\tau_p}} ,
+\\
+&=& p_{\infty} + h_1   (1-p_{\infty})
+\exp \lrRound{-\frac{t-t_1}{\tau_p}} .
+\end{eqnarray}
+At $t=t_2$, $p$ jumps to $p + (1-p)h_2 = h_2+
+(1-h_2)p$, so that
+\begin{eqnarray}
+p(t_2)
+&=&
+h_2 
++ (1-h_2) \lrSquare{p_{\infty} + h_1 (1-p_{\infty}) 
+\exp \lrRound{-\frac{t_2-t_1}{\tau_p}}}.
+\end{eqnarray}
+The resulting dynamics for $t \in (t_2,t_3)$ are then
+\begin{eqnarray}
+p(t) 
+&=& 
+p_{\infty} - \lrRound{p_{\infty} - p(t_2) }\exp
+\lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} - \lrSet{p_{\infty}   
+\textcolor{blue}{-
+  h_2 - (1-h_2) \lrSquare{
+    p_{\infty} + h_1 (1-p_{\infty}) 
+    \exp \lrRound{-\frac{t_2-t_1}{\tau_p}}
+}}}
+\exp \lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} - \lrSet{p_{\infty} -  
+  h_2 - (1-h_2) p_{\infty}
+ - h_1  (1-h_2) (1-p_{\infty}) 
+    \exp \lrRound{-\frac{t_2-t_1}{\tau_p}}}
+\exp \lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} - \lrSquare{
+-    h_2  
++
+p_{\infty} \lrRound{1 - (1-h_2) }
+- h_1 (1-h_2) (1-p_{\infty}) 
+    \exp \lrRound{-\frac{t_2-t_1}{\tau_p}}}
+\exp \lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} + \lrSquare{
+    h_2  
+- p_{\infty}  h_2 
++ h_1 (1-h_2) (1-p_{\infty}) 
+    \exp \lrRound{-\frac{t_2-t_1}{\tau_p}}}
+\exp \lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} + \lrSquare{
+    h_2  (1- p_{\infty})
++ h_1 (1-h_2) (1-p_{\infty}) 
+    \exp \lrRound{-\frac{t_2-t_1}{\tau_p}}}
+\exp \lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} + (1- p_{\infty}) \lrSquare{
+    h_2  
++ h_1 (1-h_2)  
+    \exp \lrRound{-\frac{t_2-t_1}{\tau_p}}}
+\exp \lrRound{-\frac{t-t_2}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} + (1- p_{\infty}) \lrSquare{
+    h_2  \exp \lrRound{-\frac{t-t_2}{\tau_p}}
++ h_1 (1-h_2)  
+    \exp \lrRound{-\frac{t-t_1}{\tau_p}}}.
+\end{eqnarray}
+\newpage
+Once again, for the action potential at time $t=t_3$,
+\begin{eqnarray}
+p(t_3) &=& h_3 + (1-h_3)
+\lrSet{p_{\infty} + (1-p_{\infty})  \lrSquare{ 
+h_2 \exp \lrRound{-\frac{t_3-t_2}{\tau_p}}
+ + h_1 (1-h_2) 
+    \exp \lrRound{-\frac{t_3-t_1}{\tau_p}} }}
+\end{eqnarray}
+and for $t \in (t_3,t_4)$, 
+\begin{eqnarray}
+p(t) 
+&=& 
+p_{\infty} - \lrRound{p_{\infty} - p(t_3) }
+\exp \lrRound{-\frac{t-t_3}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} - \lrRound{p_{\infty} -
+\textcolor{blue}{
+h_3 - (1-h_3)
+\lrSet{p_{\infty} + (1-p_{\infty})  \lrSquare{ 
+h_2 \exp \lrRound{-\frac{t_3-t_2}{\tau_p}}
+ + h_1 (1-h_2) 
+    \exp \lrRound{-\frac{t_3-t_1}{\tau_p}} }}
+}}
+\exp\lrRound{-\frac{t-t_3}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} - \lrRound{p_{\infty} 
+\textcolor{blue}{
+- h_3 - (1-h_3)p_{\infty} 
+- (1-h_3)(1-p_{\infty})  \lrSquare{ 
+h_2 \exp \lrRound{-\frac{t_3-t_2}{\tau_p}}
++ h_1 (1-h_2) 
+\exp \lrRound{-\frac{t_3-t_1}{\tau_p}} }}
+}
+\exp\lrRound{-\frac{t-t_3}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} - \lrRound{p_{\infty} h_3
+\textcolor{blue}{
+-h_3  - (1-h_3)(1-p_{\infty})  \lrSquare{ 
+h_2 \exp \lrRound{-\frac{t_3-t_2}{\tau_p}}
+ + h_1 (1-h_2) 
+    \exp \lrRound{-\frac{t_3-t_1}{\tau_p}} }}
+}
+\exp\lrRound{-\frac{t-t_3}{\tau_p}},
+\nonumber \\
+&=& 
+p_{\infty} + \lrRound{
+  h_3 \lrRound{1-p_{\infty}} 
+  \textcolor{blue}{
+    + (1-h_3)(1-p_{\infty})  \lrSquare{ 
+      h_2 \exp \lrRound{-\frac{t_3-t_2}{\tau_p}}
+      + h_1 (1-h_2) 
+      \exp \lrRound{-\frac{t_3-t_1}{\tau_p}} }}
+}
+\exp\lrRound{-\frac{t-t_3}{\tau_p}},
+% \nonumber \\
+% &=& 
+% p_{\infty} - (1-p_{\infty}) \lrRound{
+% \textcolor{blue}{
+%   h_3 \exp\lrRound{-\frac{t-t_3}{\tau_p}}
+%   + h_2 (1-h_3)  
+%   \exp \lrRound{-\frac{t_3-t_2}{\tau_p}} \exp\lrRound{-\frac{t-t_3}{\tau_p}}
+%   + h_1 (1-h_2) (1-h_3)  
+%   \exp \lrRound{-\frac{t_3-t_1}{\tau_p}} }
+% \exp\lrRound{-\frac{t-t_3}{\tau_p}},
+% }
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) \lrSquare{
+\textcolor{blue}{
+h_3 \exp\lrRound{-\frac{t-t_3}{\tau_p}}
++ h_2 (1-h_3)  
+ \exp \lrRound{-\frac{t-t_2}{\tau_p}} 
+ + h_1 (1-h_2) (1-h_3)   
+    \exp \lrRound{-\frac{t-t_1}{\tau_p}} }
+}.
+\end{eqnarray}
+
+In general, for $t \in (t_{m},t_{m+1})$
+\begin{eqnarray}
+p(t)
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+\sum_{k=1}^{m} 
+h_k \lrSquare{
+\prod_{l=k+1}^{m}  
+\lrRound{1- h_{l}}} 
+\exp \lrRound{-\frac{t-t_k}{\tau_p}}. 
+\label{eq:pBetweenAP}
+\end{eqnarray}
+At $t=t_{m+1}$, 
+\begin{eqnarray}
+p(t_{m+1})
+&=&h_{m+1} + \lrRound{1-h_{m+1}}
+\lrSet{
+ p_{\infty} + \lrRound{1-p_{\infty}} 
+\sum_{k=1}^{m} 
+h_k \lrSquare{
+\prod_{l=k+1}^{m}  
+\lrRound{1- h_{l}}} 
+\exp \lrRound{-\frac{t_{m+1}-t_k}{\tau_p}}
+}. 
+\label{eq:pAP}
+\end{eqnarray}
+
+\paragraph{Simplification.} 
+Assume that $h_k =h$ for
+$k=1,...,n$.  Then, between action potentials occuring at times $t_m$
+and $t_{m+1}$,  equation \eqref{eq:pBetweenAP} simplifies to
+\begin{eqnarray}
+p(t)
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+\sum_{k=1}^{m} 
+h \lrSquare{
+\prod_{l=k+1}^{m}  
+\lrRound{1- h}} 
+\exp \lrRound{-\frac{t-t_k}{\tau_p}}. 
+\nonumber \\ 
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+h \sum_{k=1}^{m} 
+\lrRound{1- h}^{m-k} 
+\exp \lrRound{-\frac{t-t_k}{\tau_p}}. 
+\end{eqnarray}
+At $t=t_{m+1}$, the probability of release is
+\begin{eqnarray}
+p(t_{m+1})
+&=&
+p_{\infty} + (1-p_{\infty}) 
+h \sum_{k=1}^{m} 
+\lrRound{1- h}^{m-k} 
+\exp \lrRound{-\frac{t_{m+1}-t_k}{\tau_p}}. 
+\end{eqnarray}
+If the interspike intervals are such that $\delta = t_{m} - t_{m-1}$
+for all $m \in \lrSet{1,...,n}$, then  equation \eqref{eq:pBetweenAP}
+simplifies further to
+\begin{eqnarray}
+p(t)
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+h \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+ \sum_{k=1}^{m} 
+\lrRound{1- h}^{m-k} 
+\exp \lrRound{-(m-k) \frac{\delta}{\tau_p}}
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+h \lrRound{1- h}^{m}
+\exp \lrRound{- \frac{m \delta}{\tau_p}}
+ \sum_{k=1}^{m} 
+ \lrRound{1- h}^{-k} 
+\exp \lrRound{\frac{k \delta}{\tau_p}}
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+h \lrRound{1- h}^{m}
+\exp \lrRound{- \frac{m \delta}{\tau_p}}
+ \sum_{k=1}^{m} \lrRound{
+ \frac{\exp \lrRound{ \delta/ \tau_p}}
+{1- h}}^{k}
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+h \lrRound{1- h}^{m}
+\exp \lrRound{- \frac{m \delta}{\tau_p}}
+\frac
+{1 - \frac{\exp \lrRound{ \lrRound{m+1}\delta /\tau_p}}
+{\lrRound{1- h}^{m+1}}}
+{1- \frac{\exp \lrRound{ \delta/\tau_p}}
+{1- h}}
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+h 
+\frac
+{ \lrRound{1- h}^{m}
+\exp \lrRound{- m \delta / \tau_p}
+- \frac
+{\exp \lrRound{  \delta / \tau_p}}
+{\lrRound{1- h}}
+}
+{1- \frac
+{\exp \lrRound{ \delta / \tau_p}}
+{1- h}
+}
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+h 
+\frac
+{ \lrRound{1- h}^{m+1}
+\exp \lrRound{- m \delta / \tau_p}
+- {\exp \lrRound{  \delta / \tau_p}}
+}
+{\lrRound{1- h} - \exp \lrRound{ \delta / \tau_p}}
+\nonumber \\
+&=& 
+p_{\infty} + (1-p_{\infty}) 
+ \exp \lrRound{-\frac{t-t_{m}}{\tau_p}}
+F(h,\delta,m)
+\end{eqnarray}
+where 
+\begin{eqnarray}
+F(h,\delta, m) 
+&=& 
+h 
+\frac
+{ \lrRound{1- h}^{m+1}
+\exp \lrRound{- m \delta / \tau_p}
+- {\exp \lrRound{  \delta / \tau_p}}
+}
+{\lrRound{1- h} - \exp \lrRound{ \delta / \tau_p}}
+\end{eqnarray}
+At $t=t_{m+1}$, 
+\begin{eqnarray}
+p(t_{m+1})
+&=&
+\end{eqnarray}
+
+\subsubsection{Frequency-dependent enhancement}
+Consider first Eqn.~\eqref{eq:prelease} with frequency-dependent
+increase in the probability of release given by 
+\begin{equation}
+h_i =g(h_i) =\frac{h_0}{h_0 + h_i}, 
+\label{eq:epsilon}
+\end{equation}
+where $h_0$ is the interspike interval at which the increase in the probability
+of release is half of its current value. 
+
+
+\subsection{Analysis of occupancy (depression)}
+
+For simplicity in the analysis, let $\phi$ be an instantaneous pulse
+for each presynaptic spike. Also, assume the probability of release
+and the facilitation factor $h$ are constant and an initial state of
+occupancy $x(0)=x_{\infty}$. 
+Under those conditions, the occupancy of readily
+releasable sites after the the $n$th pulse is given 
+\begin{eqnarray}
+x_n
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}^{n+1} 
+}
+{
+\lrRound{1-p}^{n} 
++ p
+\sum_{k=1}^{n} \lrRound{1-p}^{n-k} \exp\lrSquare{- (t_n-t_{n-k}) r_x }
+}
+\label{tnOccup1}
+\\
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}
+}{
+1
++ p
+\sum_{k=1}^{n} \frac{ \exp\lrSquare{- (t_n-t_{n-k}) r_x }}{\lrRound{1-p}^{k}}
+}
+\label{tnOccup2}
+% \\
+% &=& 
+% \frac{
+% x_{\infty} \lrRound{1-p}
+% }{
+% 1
+% + p \exp\lrSquare{- t_n r_x}
+% \sum_{i=1}^{n} \lrRound{1-p}^{-i} \exp\lrSquare{t_{n-i} r_x }
+% }
+% \label{tnOccup3}
+\end{eqnarray}
+
+\paragraph{Triggering pulses.}
+A more realistic approach would be to define $\phi$
+so that its time course resembles that of calcium activation, during
+which neurotransmitter is released, the occupancy  of vesicle docking sites drops, and
+the probability of release changes. 
+One such function could be
+\begin{eqnarray}
+\phi(y) &=& H(y)  \frac{y}{\tau_{\alpha}} \exp \lrRound{-\frac{y}{\tau_{\alpha}}}
+\label{eq:alpha}
+\end{eqnarray}
+where $H(y)$ is the heavy-side function, taking the value 0 if for
+$y<0$, and 1 otherwise. 
+
+\paragraph{Enhancement as a function of interspike intervals.}
+Facilitation (\textit{i.e.} increase in $p$), can be assumed
+to depend on the presynaptic interspike intervals $h_k=t_{k} -t_{k-1}$ for $k=2,3,...$. 
+For instance, 
+\begin{equation}
+q(h)= \bar{q} \frac{h}{\tau_q}   e^{(h-h_{*})/\tau_q}
+\end{equation}
+where $\tau_q$ can be regarded as a facilitation time constant, $h_*$
+as an optimal interspike interval for facilitation, and
+$\bar{q}$ is the maximum increase in the probability of release. 
+ 
+
+
+
+
+
+\newpage
+\section{Mathematical details}
+
+
+Let $(x_k,p_k) = (x(t_k),p(t_k))$ represent the states of the system
+at the time of arrival of the $k$th pulse.
+From \eqref{eq:occupancy}-\eqref{eq:prelease}, the dynamics of $(x,p)$
+for $t \in (t_i, t_{i+1})$ satisfy 
+\begin{eqnarray}
+x(t) 
+&=& \frac{x_{\infty} {x_i}}{{x_i} + \lrRound{x_{\infty}- x_i}
+\exp\lrRound{- (t-t_i) x_{\infty} / \tau_x }},
+\label{xLogisticSolution}
+\\
+p(t) 
+&=& p_{\infty} - \lrRound{p_{\infty}- p_i}
+   \exp\lrRound{-\frac{(t-t_i)}{\tau_p}}. 
+\label{pLinearSolution}
+\end{eqnarray}
+
+At $t=t_{k+1}$, the time of the $(k+1)$th 
+spike,  the state $(x,p)(t)$ jumps to the value 
+\begin{eqnarray}
+x_{k+1} 
+&=& \frac{x_{\infty} {x_{k}}  \lrRound{1-p_{k+1}} }{{x_{k}} + \lrRound{x_{\infty}- x_{k}}
+\exp\lrRound{- (t_{k+1}-t_{k}) x_{\infty} / \tau_x }}
+\\
+p_{k+1} 
+&=& \lrSquare{{p_{k}} + \lrRound{p_{\infty}- p_{k}}
+\exp\lrRound{- (t_{k+1}-t_{k})  / \tau_p }} \lrRound{1-p_{k+1} x_{k+1}}
+\end{eqnarray}
+
+\subsection{Analysis of occupancy  (depression) in response to
+  $\delta$-pulses for constant $p$}
+
+At $t=t_{i+1}$, the time of the $(i+1)$th 
+pulse,  the occupancy jumps to the value 
+\begin{eqnarray}
+x_{i+1} 
+&=& \frac{x_{\infty} {x_{i}}  \lrRound{1-p} }{{x_{i}} + \lrRound{x_{\infty}- x_{i}}
+\exp\lrRound{- (t_{i+1}-t_{i}) x_{\infty} / \tau_x }}
+% \\
+%&=& \frac{x_{\infty}}{{1} + \lrRound{ \frac{x_{\infty}}{x_{k-1}} -1}
+%\exp\lrRound{- t_{k} x_{\infty} / \tau_x }} \lrRound{1-p}
+\label{tkOccup}
+\end{eqnarray}
+for $i \in \lrSet{0,...,N-1}$. 
+
+
+The general expression in \eqref{tkOccup} can be used recursively to
+investigate the behavior of the occupancy after a series of pulses. To
+do so, let $i=1$, $r_x=x_{\infty} / \tau_x$, and replace the occupancy
+$x_0=x_{\infty}(1-p)$ after the first pulse  into Eqn.~\eqref{tkOccup}.
+%  and
+% $\delta_{k}=t_{k}-t_{k-1}$,  represent the interspike interval between the
+% $(k-1)$th and the $k$th pulse, for $k=2,...,N$. 
+Then, the occupancy at $t=t_1$ is
+\begin{eqnarray}
+x_1 
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ \frac{x_{\infty}}{\textcolor{blue}{x_0}} -1}
+\exp\lrSquare{- (t_1-t_0) r_x }}
+\nonumber
+\label{t1Occup0}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ \frac{x_{\infty}}
+{\textcolor{blue}{x_{\infty}(1-p) }} -1}
+\exp\lrSquare{- (t_1-t_0) r_x }}
+\nonumber
+\label{t1Occup1}
+\\
+&=& \frac{ x_{\infty} \lrRound{1-p}}
+{1 + \lrRound{ 
+\textcolor{blue}{\frac{p}{1-p}}}
+\exp\lrSquare{- (t_1-t_0) r_x }}
+\nonumber
+\label{t1Occup2}
+\\
+&=& \frac{ x_{\infty} \lrRound{1-p}^2}
+{ \lrRound{1-p} + p \exp\lrSquare{- (t_1-t_0) r_x }}
+\label{t1Occup3}
+\end{eqnarray}
+
+The occupancy at $t=t_2$ is
+\begin{eqnarray}
+x_2 
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ \frac{x_{\infty}}{\textcolor{blue}{x_1}} -1}
+\exp\lrSquare{- (t_2-t_1) r_x }}
+\nonumber
+\label{t2Occup0}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ \frac{x_{\infty}}
+    {\textcolor{blue}{
+        \frac{ x_{\infty} \lrRound{1-p}^2}
+        { \lrRound{1-p} + p \exp\lrSquare{- (t_1-t_0) r_x }}
+      }} -1}
+\exp\lrSquare{- (t_2-t_1) r_x }}
+\nonumber
+\label{t2Occup1}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ 
+    \textcolor{blue}{
+      \frac
+      { \lrRound{1-p} + p \exp\lrSquare{- (t_1-t_0) r_x }}
+      { \lrRound{1-p}^2}
+    } 
+    -1
+  }
+  \exp\lrSquare{- (t_2-t_1) r_x }}
+\nonumber
+\label{t2Occup2}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}^3}
+{\lrRound{1-p}^2 + \lrSquare{ 
+    \textcolor{blue}{
+      { \lrRound{1-p} 
+        + p \exp\lrSquare{- (t_1-t_0) r_x }}
+    } 
+    - \lrRound{1-p}^2
+  }
+  \exp\lrSquare{- (t_2-t_1) r_x }
+}
+\nonumber
+\label{t2Occup3}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}^3}
+{
+  \lrRound{1-p}^2 + \lrSquare{ 
+    \textcolor{blue}{  
+      \lrRound{ \lrRound{1-p}     - \lrRound{1-p}^2}
+      \exp\lrSquare{- (t_2-t_1) r_x }
+      + p \exp\lrSquare{- (t_2-t_0) r_x }}
+  } 
+}
+\nonumber
+\label{t2Occup4}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}^3}
+{
+  \lrRound{1-p}^2 + 
+  p\lrRound{1-p}
+  \exp\lrSquare{- (t_2-t_1) r_x }
+  + p \exp\lrSquare{- (t_2-t_0) r_x }
+},
+\label{t2Occup5}
+\end{eqnarray}
+from which it is clear that a pattern starts to emerge.
+The occupancy at $t=t_3$ is then 
+\begin{eqnarray}
+x_3 
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ \frac{x_{\infty}}{\textcolor{blue}{x_2}} -1}
+\exp\lrSquare{- (t_3-t_2) r_x }}
+\nonumber
+\label{t2Occup0}
+\\
+&=& \frac{x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ \frac{x_{\infty}}
+    {\textcolor{blue}{
+        \frac{x_{\infty} \lrRound{1-p}^3}
+        {
+          \lrRound{1-p}^2 + 
+          p\lrRound{1-p}
+          \exp\lrSquare{- (t_2-t_1) r_x }
+          + p \exp\lrSquare{- (t_2-t_0) r_x }
+        }
+      }
+    }
+    -1}
+\exp\lrSquare{- (t_3-t_2) r_x }}
+\nonumber
+\label{t2Occup1}
+\\
+&=& \frac{ x_{\infty} \lrRound{1-p}}
+{1 + \lrSquare{ 
+    {\textcolor{blue}{
+        \frac
+        {
+          \lrRound{1-p}^2 + 
+          p\lrRound{1-p}
+          \exp\lrSquare{- (t_2-t_1) r_x }
+          + p \exp\lrSquare{- (t_2-t_0) r_x }
+        }{ \lrRound{1-p}^3}
+      }
+    }
+    -1}
+\exp\lrSquare{- (t_3-t_2) r_x }}
+\nonumber
+\label{t2Occup2}
+\\
+&=& \frac{ x_{\infty} \lrRound{1-p}^4 }
+{\lrRound{1-p}^3 + \lrSquare{ 
+    {\textcolor{blue}{
+        {
+          \lrRound{1-p}^2 + 
+          p\lrRound{1-p}
+          \exp\lrSquare{- (t_2-t_1) r_x }
+          + p \exp\lrSquare{- (t_2-t_0) r_x }
+        }
+      }
+    }
+    - \lrRound{1-p}^3}
+\exp\lrSquare{- (t_3-t_2) r_x }}
+\nonumber
+\label{t2Occup3}
+\\
+&=& \frac{ x_{\infty} \lrRound{1-p}^4 }
+{\lrRound{1-p}^3 + 
+  {\textcolor{blue}{
+      p \lrRound{1-p}^2 \exp\lrSquare{- (t_3-t_2) r_x } 
+      + 
+      p\lrRound{1-p}
+      \exp\lrSquare{- (t_3-t_1) r_x }
+      + p \exp\lrSquare{- (t_3-t_0) r_x }
+    }
+  }
+}
+\label{t2Occup4}
+\end{eqnarray}
+
+In general, for the $n$th pulse,
+\begin{eqnarray}
+x_n
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}^{n+1} 
+}
+{
+\lrRound{1-p}^{n} 
++ p
+\sum_{i=1}^{n} \lrRound{1-p}^{n-i} \exp\lrSquare{- (t_n-t_{n-i}) r_x }
+}
+\label{tnOccup1}
+\\
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}
+}{
+1
++ p
+\sum_{i=1}^{n} \lrRound{1-p}^{-i} \exp\lrSquare{- (t_n-t_{n-i}) r_x }
+}
+\label{tnOccup2}
+\\
+&=& 
+\frac{
+x_{\infty} \lrRound{1-p}
+}{
+1
++ p \exp\lrSquare{- t_n r_x}
+\sum_{i=1}^{n} \lrRound{1-p}^{-i} \exp\lrSquare{t_{n-i} r_x }
+}
+\label{tnOccup3}
+\end{eqnarray}
+
+
+
+\newpage
+\section{Abstract from Barroso, Herrera-Valdez, and Bargas}
+The neostriatal neuronal population is composed mainly by spiny projection
+neurons (SPNs), which make synapses with each other via their local
+axon collaterals (approx. 100mm long) shaping the activity of a localized feedback
+inhibitory circuit. The other 5-10\% of the neuronal population is
+composed by different classes of interneurons, mainly
+GABAergic. The synapses between GABAergic interneurons and SPNs form a
+feedforward inhibitory circuit in the striatum by connecting hundreds
+of SPNs, which may be as far as 1 mm. Both inhibitory circuits are richly inervated
+by dopaminergic neurons from the substantia nigra pars compacta (SNc),
+and therefore both circuits are affected by dopamine (DA) loss, like
+in Parkinson disease. However, little is known of how the dopamine
+loss affects each synapse form the feedforward inhibitory circuit. To
+asses this question, we favor the feedforward circuit by using
+intraestriatal field stimulation 1 mm away from the SPN recorded. We
+show that using field stimulation it is possible to distinguish
+between synapses of the feedforward circuit characterized by their
+short term synaptic plasticity (STSP); finding that there are at least
+three different types of inhibition in the feedforward circuit:
+depressing synapses (putative fast spiking (FS) to SPN synapse),
+facilitating synapses (putative ???(LTS) to SPN synapse) and a novel
+combination of facilitating/depressing synapses (possibly yet another kind
+of LTS-SPN). In addition, we use intensity-amplitude experiments to
+reveal different properties of each synapse. We then found using
+cluster analysis that
+each response corresponds to a different kind
+of synapse. Using the 6-hydroxydopamine (6-OHDA) rodent model of
+Parkinsonism we demonstrate how each of this synapses are
+differentially affected, showing that depressing synapses are the less
+affected by DA deprivation, whereas the inhibition form both
+facilitating and facilitating/depressing synapses are enhanced
+(statistical significance).  Moreover, evoked IPSCs after DA loss in
+facilitating and facilitating/depressing synapse are more likely to occur than
+in control conditions. Taken together, our observations  suggest that
+these synapses take control of the feedforward 
+inhibitory circuit in Parkinsonism and depressing synapses dominate
+such a circuit in control conditions.
+
+\bibliographystyle{plainnat}
+\bibliography{membraneBiophysics}
+
+\end{document}

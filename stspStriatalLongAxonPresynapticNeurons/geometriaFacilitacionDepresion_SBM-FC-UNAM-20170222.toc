@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {spanish}
+\beamer@sectionintoc {1}{Res\IeC {\'u}men}{2}{0}{1}
+\beamer@sectionintoc {2}{Modelo simple de plasticidad a corto plazo}{3}{0}{2}
+\beamer@sectionintoc {3}{Plasticidad sin\IeC {\'a}ptica}{6}{0}{3}
+\beamer@sectionintoc {4}{Din\IeC {\'a}mica de facilitaci\IeC {\'o}n y depresi\IeC {\'o}n por separado}{28}{0}{4}
+\beamer@sectionintoc {5}{Simulaciones con distintas din\IeC {\'a}micas}{39}{0}{5}
+\beamer@sectionintoc {6}{Conclusiones}{47}{0}{6}
+\beamer@sectionintoc {7}{C\IeC {\'a}lculos en m\IeC {\'a}s detalle}{52}{0}{7}
