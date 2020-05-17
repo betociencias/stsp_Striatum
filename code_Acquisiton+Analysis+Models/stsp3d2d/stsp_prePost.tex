@@ -1,0 +1,15 @@
+\section{Short term synaptic plasticity from a whole cell approach}
+
+The model can be thought of in terms of 3 main components. First, a system capable of producing spiking dynamics, which can be 2- or 3-dimensional in case bursting or spike frequency adaptation are required. Second, a 2- or 3-dimensional system that describes the dynamics of presynaptic release, and third, at least one more equation that describes the dynamics of postsynaptic activation upon release. 
+
+\begin{eqnarray}
+\partial_{t} c &=& \frac{c_{\infty}-c}{\tau_{c}} + f(t)
+\\
+\partial_{t} p &=&  \alpha ~c~(1-p) - \beta p  
+\\
+\partial_{t} x &=& x\lrRound{\frac{x_{\infty}-x}{\tau_{x}}} - 
+x~p
+\end{eqnarray}
+where $f(c)$ represents the flux of \calcium into the terminal. 
+
+                

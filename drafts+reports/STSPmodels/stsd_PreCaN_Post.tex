@@ -1,0 +1,109 @@
+\documentclass[10pt]{article}
+\input{mahvPreamble}
+
+\begin{document}
+
+
+\section{Short term presynaptic plasticity model}
+Let represent an average $c_a = [Ca]_{i}$ in axonal terminals forming a synaptic contact. Let $p$ and $x$ represent the probability of release and the density of readily releasable vesicles in the terminal. A simple model for the dynamics of presynaptic release 
+is then
+\begin{eqnarray}
+\partial_t c_a &=& \frac{c_{a\infty}-c_a}{\tau_c} - k I_N(v_{a})
+\label{}
+\\
+p_{\infty}(c) &=& \frac{c^l}{c^l + {c_m}^l} 
+\\
+\partial_t p &=&  \frac{p_{\infty}(c)-p}{\tau_p} 
+\\
+\partial_t x &=& x \frac{x_{\infty}-x}{\tau_x} - p x h
+%\\
+%\partial_t u &=& u \frac{u_{\infty}-u}{\tau_u} - f(p(c_a) x)
+\end{eqnarray}
+where $h$ is equivalent to the time step in the time series, $l$ is the cooperativity of calcium for the increase in the probability of release.
+
+\subsection{Analysis to predict asymptotic behaviours for periodic stimulation}
+
+Assume $p \approx p_{\infty}(c)$ and write the surges in intracellular calcium as pulses given by delta functions. Equation~\eqref{}
+\begin{eqnarray}
+\partial_t c_a &=& \frac{c_{a\infty}-c_a}{\tau_c} - k \sum_{i=1}^n \delta(t-t_i) \\
+p_{\infty}(c) &=& \frac{c^n}{c^n + {c_m}^n} 
+\\
+\partial_t x &=& x \frac{x_{\infty}-x}{\tau_x} - h p_{\infty}(c_a) x
+\end{eqnarray}
+Calcium dynamics: $c_{\infty} = 0 , c_0 = c(t_0) = k $
+\\
+Pulse times: $t_0, t_1, ..., t_n$
+\begin{eqnarray*}
+c_0 &=& c(t_0) = k
+\\
+c(t) &=& c_0 e^{-(t-t_0)/\tau_c}
+=k e^{-(t-t_0)/\tau_c}, \quad t_0\leq t <t_1
+\\
+c_1 &=& c(t_1) = k \lrRound{1 + e^{-(t_1-t_0)/\tau_c}}
+\\
+c(t) &=& c_1 e^{-(t-t_1)/\tau_c}, \quad t_1\leq t <t_2
+\\
+c_2 &=& k+ c_1 e^{-(t_2-t_1)/\tau_c}  
+\\
+&=& k+ k \lrRound{1 + e^{-(t_1-t_0)/\tau_c}} e^{-(t_2-t_1)/\tau_c} 
+\\
+&=& k+ k  \lrRound{e^{-(t_2-t_1)/\tau_c}  + e^{-(t_2-t_0)/\tau_c}} 
+\\
+&=& k \lrRound{1+e^{-(t_2-t_1)/\tau_c}  + e^{-(t_2-t_0)/\tau_c}}
+\end{eqnarray*}
+Therefore, after the $n$th pulse has arrived,
+\begin{eqnarray}
+c_n &=& k \lrRound{ 
+\sum_{i=0}^{n} e^{-(t_n-t_{i})/\tau_c} 
+}
+\label{eq:cn}
+\\
+c(t) &=& c_n e^{-(t-t_n)/\tau_c}, \quad t_n\leq t <t_{n+1}
+\label{eq:c(t)tn}
+\end{eqnarray}
+If pulses are periodic (fixed frequency), with $\delta = t_{i+1}-t_i$, then $t_n - t_0 = n \delta$, and equation~\eqref{eq:cn} transforms into
+\begin{eqnarray}
+c_n &=& k \lrRound{ 
+\sum_{i=0}^{n} e^{-i\delta/\tau_c} 
+}
+\label{eq:cnPeriodicPulses}
+\end{eqnarray}
+The quantity $a = e^{-\delta/\tau_c}$ represents the calcium decay factor between pulses. Then the calcium concentration peak after the $n$th pulse is 
+\begin{equation}
+c_n=k \lrRound{ 
+\sum_{i=0}^{n} a^{i} 
+}
+= k \lrRound{\frac{1-a^{n+1}}{1-a}}
+= k \lrRound{\frac{1-e^{-\lrRound{n+1} \delta/\tau_c}}{1-e^{\lrRound{- \delta/\tau_c}}}}
+\end{equation}
+and the calcium concentration right before the $(n+1)$th pulse is 
+\begin{equation}
+\lim_{t\rightarrow t_{n+1}} c(t)
+= k \lrRound{\frac{1-e^{-\lrRound{n+1} \delta/\tau_c}}{1-e^{\lrRound{- \delta/\tau_c}}}} e^{-\delta/\tau_c}
+\end{equation}
+For instance, if $\delta=50$ ms and $\tau_c = 10$ ms, then $e^{-\delta/\tau_c}=e^{-5}\approx 0.0067$, which means that there is almost no accumulation of intracellular calcium between pulses at 20 Hz. 
+
+Once the time course of $c$ determined, it is possible to predict $p$ and $x$. For instance, the probability of release right after the $n$th pulse is,
+\begin{eqnarray}
+p_{\infty}(c_n) &=& \frac{c_n^l}{c_n ^l + {c_m}^l} 
+\end{eqnarray}
+which allows us to calculate the solution for $x$ recursively by considering initial conditions defined by the pulses, as done with $c$. 
+
+Explicitly, assume $x(t) = x_{\infty}$ for $t<t_0$.  The value of $x$ after the pulse at time $t_0$ jumps to 
+$$
+x_0 = x_{\infty} - p x h = x_{\infty} - x h \frac{c_0^l}{c_0^l + {c_m}^l}. 
+$$
+Then, 
+\begin{eqnarray}
+x(t) &=& \frac{x_{\infty}}{1 + \frac{x_{\infty}- x_0}{x_0}\exp\lrRound{-\frac{x_{\infty}}{\tau_x} (t-t_0)}}
+\end{eqnarray}
+for $t_0\leq t < t_1$. Similarly, when the next pulse arrives at time $t=t_1$, the value of $x$ jumps to 
+\begin{eqnarray}
+x_1= \frac{x_{\infty}}{1 + \frac{x_{\infty}- x_0}{x_0}\exp\lrRound{-\frac{x_{\infty}}{\tau_x} (t_1-t_0)}} - x h \frac{c_1^l}{c_1 ^l + {c_m}^l}
+\end{eqnarray}
+and the dynamics between the pulses at times $t_1$ and $t_2$ are then
+\begin{eqnarray}
+x(t) &=& \frac{x_{\infty}}{1 + \frac{x_{\infty}- x_1}{x_1}\exp\lrRound{-\frac{x_{\infty}}{\tau_x} (t-t_1)}}
+\end{eqnarray}
+
+\end{document}

@@ -1,0 +1,26 @@
+\paragraph{Discrete and continuous nature of pre- and postsynaptic events. }
+
+Regard one synaptic contact as the collection of all the synapses made by one presynaptic neuron onto a presynaptic neuron of interest. 
+
+Consider a synaptic contact formed by $N$ synapses and assume that  $p$ is the average probability of activation for the synapses in the contact. If the average probability of release in a 
+
+\begin{equation}
+    
+\end{equation}
+
+
+Suppose there are $C$ such presynaptic neurons with with $N_1$,...,$N_C$ synapses, respectively.
+Assume that the number of vesicles in the RRP at the $k$th synapse from the $j$th neuron is  $n_{jk}$, with $j \in \lrSet{1,...,C}$, $k\in \lrSet{1,...,N_i}$. If after a single action potential from neuron $j$, the probability of release at the $k$th synapse is $p_{jk}$, and vesicles are released independently at each synapse, then the average number of vesicles released at that synapse is $\hat{n}_{jk} = p_{jk} n_{jk}$. The time course of the normalized presynaptic neurotransmitter release is described by the product $q_{jk}(t) p_{jk}(t)$. 
+The postsynaptic current at the $jk$-synapse is then
+\begin{equation} 
+I(v_{jk}, t)= {a}_{jk} q_{jk}(t) p_{jk}(t)  S\lrRound{ \frac{v_{jk}(t)-v_r}{v_T}}
+\end{equation}
+where  $v_{jk}$is the postsynaptic voltage, $v_r$ is the reversal potential for the postsynaptic current, and $v_T$ is the thermal potential\footnote{$v_T= kT/q$ where $k$ is Boltzmann's constant, $T$ is the absolute temperature,  $q$ is the elementary charge}.  $S$ is a nonlinear function of $v_{jk}$ that describes the electrodiffusive current in the open channel of the activated receptor and $a_{jk}$ is the maximum amplitude of the postsynaptic current in the open channel that can be thought of as the product of the number of postsynaptic receptors and a conversion factor that transforms the normalized amount of neurotransmitter $q_{jk} p_{jk}$, into the proportion of active post-synaptic receptors at the $jk$-synapse.
+The peak amplitude of $I(v_{jk})$ causes a change in the postsynaptic potential that propagates and is modified throughout the propagation path. This postsynaptic current is a function of the amount of neurotransmitter released, the proportion of active receptors, and the postsynaptic membrane potential at the postsynaptic membrane.  
+
+Assuming that all the synapses are excitatory and that the postsynaptic neuron is at rest, let $\bar{v}_{jk}$ represent  the peak postsynaptic  potential at an integration site, say, the soma, resulting from the average release of neurotransmitter at the $ij$-synapse and the subsequent activation of the postsynaptic receptors. The peak in the voltage change that results from the average activation of the $j$th synaptic contact is then $\bar{v}_{j}$ which, at best, equals $\sum_{k=1}^{N_j} \bar{v}_{jk}$ when the peaks occur simultaneously at the soma. It is worth recalling that $\bar{v}_{j}$ is only the sum of the average voltage responses from all the synapses of the $j$th contact. 
+
+Assume that there is no noise, that $p_{jk}$, $n_{jk}$, and the $jk$-quanta $q_{jk}$ are constant for $k \in \lrSet{1,...,N_j}$ and $j \in \lrSet{1,...,C}$, and also that the properties of the postsynaptic membrane along the path of propagation do not change for each combination of synaptic activations $jk_1, ..., jk_m$. Under such circumstances, the peak of the total propagated transients $\bar{v}_{jk_1}+...+\bar{v}_{jk_m}$ can only take a finite number of values. However, even in such circumstances and given that a voltage transient can only reach a few millivolts in amplitude, and that the number of different combinations of activated synapses can be very large, then the idea of being able to distinguish discrete values related to the quanta released at the single synapses seems difficult, if not impossible. The quantal nature of the somatic postsynaptic potentials seems even more impossible to occur in consideration of the fact that each combination of synaptic activations is likely to activate voltage-gated channels along the integration path to different extents.
+
+
+

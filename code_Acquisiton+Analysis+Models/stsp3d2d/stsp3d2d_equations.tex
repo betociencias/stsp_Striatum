@@ -1,0 +1,152 @@
+% !TEX root = stsp3d2d_main.tex
+\section{Reduced models of short term synaptic plasticity}
+
+Let $c$, $p$, and $x$ represent the intracellular concentration of {\calcium} at the presynaptic terminal, the proportion of released vesicles per unit time, and the normalized readily releasable vesicles. Assume that the dynamics are given by
+\begin{eqnarray}
+\partial_{t} c &=& \frac{c_{b}-c}{\tau_{b}} - k_{r} \alpha_{r}(1-r)c + f(t)
+\label{dc}
+\\
+\partial_{t} r &=&  \alpha_{r}~c~(1-r) - \beta_{r} r  
+\label{dr}
+\\
+\partial_{t} q &=& \frac{q_{\infty}-q}{\tau_{q}} - \delta~q~r
+\label{dq}
+\end{eqnarray}
+where $c_{b}$ and $\tau_{b}$ represent the steady state and time constant for presynaptic calcium due to buffering in the absence of any other perturbation. The term $f(c)$ represents the flux of \calcium into the terminal via voltage-dependent channels. The term $k_{c} \alpha_{r}~c~(1-r)$ represents the decrease in the calcium concentration due to binding to the release machinery.
+
+\begin{table}[h]
+\centering
+\caption{Parameters and values}
+\begin{tabular}{l l l p{0.75\textwidth}}
+\hline 
+$c_{b}$ & & $\mu$M & steady state constant for presynaptic {\calcium} due to buffering
+\\
+$\alpha_{r}$ & & ms$^{-1}$ $\mu$M$^{-1}$ & Activation rate of the release machinery in the presence of {\calcium}
+\\
+$\beta_{r}$ & & ms$^{-1}$ & Deactivation rate of the release machinery
+\\
+$k_{r}$ & & $\mu$M & Impact of the {\calcium} activating the release machinery on the intracellular {\calcium} concentration in the terminal
+\\
+$q_{\infty}$ & &  & Steady state for que normalized quanta in the readily releasable pool
+\\
+$\tau_{b}$ & & ms &  time constant for presynaptic {\calcium} due to buffering
+\\
+$\tau_{q}$ & & ms & Time constant for the recovery of the readily releasable pool
+\\
+$\delta$ & & ms$^{-1}$ & Conversion rate 
+\\
+\hline 
+\end{tabular}
+\end{table}
+
+
+% ------------------------------------
+\subsection{{\calcium} dynamics}
+% ------------------------------------
+
+It is worth noticing that the dynamics for $c$ are linear when $f(t)=0$. To see this, equation~\eqref{dc} can be transformed to 
+\begin{eqnarray*}
+\partial_{t} c 
+%&=& f(t) +\frac{c_{b}-c}{\tau_{b}} - k_{r} \alpha_{r}~c~(1-r) + f(t)
+%\\ &=& f(t) +\frac{c_{b}}{\tau_{b}} - c \lrRound{ \frac{1}{\tau_{b}} + k_{r} \alpha_{r}~(1-r)} 
+%\\ &=& f(t) +\frac{c_{b}}{\tau_{b}} - c \lrRound{ \frac{1+ k_{r} \alpha_{r}~(1-r) \tau_{b} }{\tau_{b}} } 
+%\\ 
+&=& f(t) + \frac{c_{\infty}-c}{\tau_{c}} 
+\label{dc2}
+\end{eqnarray*}
+where 
+\begin{eqnarray}
+\tau_{c} &=& \frac{\tau_{b}}{1+ k_{r} \alpha_{r}~(1-r) \tau_{b} },
+\\
+c_{\infty} &=& \frac{c_{b}}{1+ k_{r} \alpha_{r}~(1-r) \tau_{b} }.
+\end{eqnarray}
+That is, if $f(t)=0$, then the dynamics for $c$ from an initial condition $c_{o}=c(t_{o})$ behave like 
+$$c(t) = c_{\infty} - \lrRound{c_{\infty}- c_{0}}\exp \lrRound{\frac{t_{o}-t}{\tau_{c}}}.$$
+which means that in the absence of any {\calcium} influx, the concentration of {\calcium} in the presynaptic terminal goes to a steady state $c_{\infty}$ that becomes the steady state for buffering only for fast buffering (small $\tau_{b}$), or if the rate of binding to the activation machinery is slow enough (small $\alpha_{r}$). 
+
+\paragraph{Calcium influx. }
+To better understand the {\calcium} dynamics, this time in the presence of calcium influx, 
+assume $f(t)$ is a Dirac comb given by 
+\begin{equation}
+f(t) =  h ~\sum_{k=1}^{n} \delta\lrRound{t-t_{k}}
+\end{equation}
+where $t_{0}$, ..., $t_{n}$ represent stimulus times (e.g. presynaptic action potential-driven fluxes).  Also, suppose that there has been a long enough interval of time so that before the first pulse, presynaptic terminal {\calcium} concentration is at steady state; that is, that $c(t)=c_{\infty}$ for $t\leq t_{0}$. Also, suppose that, at the $k$th pulse time, the value of $c(t)$ changes to $c_{k}= c(t_{k})+ h$, for $k \in \lrSet{0,...,n}$. 
+Then, at $t=t_{0}$, let $c_{0} = c_{\infty} + h$ be the new value of $c$ after the jump. The dynamics for $c$ before the next pulse are given by, 
+\begin{eqnarray*} 
+c(t) %&=& c_{\infty} - \lrRound{c_{\infty}-c_{0}}\exp\lrRound{ \frac{t_{0}-t}{\tau_{c}}}
+%\\
+%&=& c_{\infty} - \lrRound{c_{\infty}- c_{\infty} -h}\exp\lrRound{ \frac{t_{0}-t}{\tau_{c}}}
+%\\
+&=& 
+c_{\infty} + h\exp\lrRound{ \frac{t_{0}-t}{\tau_{c}}}
+\end{eqnarray*} 
+for $t \in (t_{0},t_{1})$. At $t=t_{1}$ the calcium concentration changes again, to $c_{1}= c(t_{1})+ h$, which becomes a new initial condition. Then, for $t \in (t_{1},t_{2})$, 
+\begin{eqnarray*} 
+c(t) &=& c_{\infty} - \lrRound{c_{\infty}-c_{1}}\exp\lrRound{ \frac{t_{1}-t}{\tau_{c}}},
+%\\
+%&=& c_{\infty} - \lrRound{
+%c_{\infty}-  c_{\infty}  - h \exp\lrRound{ \frac{t_{0}-t_{1}}{\tau_{c}}} - h} \exp\lrRound{ \frac{t_{1}-t}{\tau_{c}}},
+%\\
+%&=& c_{\infty} + h\lrRound{ 1+ \exp\lrRound{ \frac{t_{0}-t_{1}}{\tau_{c}}}}\exp\lrRound{ \frac{t_{1}-t}{\tau_{c}}},
+\\ 
+&=& c_{\infty} + h\lrRound{  \exp\lrRound{ \frac{t_{1}-t}{\tau_{c}}} + \exp\lrRound{ \frac{t_{0}-t}{\tau_{c}}}}.
+ \end{eqnarray*} 
+In general, for $t \in (t_{n-1},t_{n})$,
+ \begin{eqnarray*} 
+c(t) &=&  c_{\infty} +h \sum_{k=0}^{n-1} \exp\lrRound{ \frac{t_{k}-t}{\tau_{c}}}
+ \end{eqnarray*} 
+At $t_{n}$ the value of $c$ jumps to
+ \begin{eqnarray*} 
+c(t_{n}) &=&  c_{\infty} +h \sum_{k=0}^{n} \exp\lrRound{ \frac{t_{k}-t_{n}}{\tau_{c}}}
+ \end{eqnarray*}
+ If pulses are periodic, with $d= t_{k+1}-t_{k}$, for all $k \in \lrSet{1,...,n}$ then $t_{n}-t_{k} =(n-k) d$.  
+ In this case, the calcium concentration becomes
+ \begin{eqnarray*} 
+c(t_{n}) &=&  c_{\infty} +h  \sum_{k=0}^{n} u^{\lrRound{ n-k}} =  c_{\infty} +h  \sum_{l=0}^{n} u^{l},
+\\
+&=&  c_{\infty} +h \lrRound{ \frac{1-u^{n+1}}{1-u} },
+\end{eqnarray*}
+where
+ \begin{equation}
+ u= \exp\lrRound{- \frac{d}{\tau_{c}}}.
+ \end{equation}
+
+ 
+Explicitly,
+ \begin{eqnarray} 
+c(t_{n}) &=&    c_{\infty} +h \lrSquare{ \frac{1-\exp\lrRound{- (n+1)\frac{d}{\tau_{c}}}}{1-\exp\lrRound{- \frac{d}{\tau_{c}}}} }.
+\end{eqnarray}
+The asymptotic behavior as $n\rightarrow \infty$ is then 
+\begin{equation} 
+c_{*}  =  c_{\infty} +h \lrRound{ \frac{1}{1-\exp\lrRound{- \frac{d}{\tau_{c}}}} }.
+\end{equation}
+which written explicitly in terms of the parameters for {\calcium} buffering and activation of the release machinery, becomes
+\begin{equation} 
+c_{*}  =  c_{\infty} +h \lrRound{ \frac{1}{1-\exp\lrRound{- d\frac{1+ k_{r} \alpha_{r}~(1-r) \tau_{b} }{\tau_{b}}}} }.
+\end{equation}
+
+% ---------------------------------------
+\subsection{$p$ dynamics and the subsystem $c-p$}
+% ---------------------------------------
+The dynamics of the subsystem $c,p$ are given by 
+\begin	{eqnarray}
+\partial_{t} c &=& \frac{c_{\infty}-c}{\tau_{c}} + f(t)
+\\
+\partial_{t} p &=&  \alpha ~c~(1-p) - \beta p  
+\end{eqnarray}
+The time constant and steady state for the $p$ are 
+\begin	{eqnarray}
+\tau_{p}(c) &=& \frac{1}{\alpha ~c + \beta} 
+\\
+p_{\infty}(c) &=&  \frac{\alpha ~c}{\alpha ~c + \beta} = \frac{c}{c + \frac{\beta}{\alpha}}
+\end{eqnarray}
+$c$ increases as action potentials arrive, then $\tau_{p}(c)$  decreases and $p_{\infty}(c)$ increases. So $p$ increases with $c$, but the dynamics for $p$ become faster as that happens. 
+
+if $\tau_{c}>>\tau_{p}$, then 
+the dynamics for $p$ are fast enough to substitute $p$ with $p_{\infty}(c)$. Explicitly, it would be required that 
+\begin	{equation*}\tau_{c}>\frac{1}{\alpha ~c + \beta}.
+\end{equation*}
+
+
+
+

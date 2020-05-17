@@ -1,0 +1,90 @@
+\section{Presynaptic release and short-term plasticity}
+
+\paragraph{Binomial probability of release at the single synapse.} Assume the activation of the presynaptic machinery is a single event involving the independent release of $n$ vesicles in the  readily releasable pool (RRP) with a certain probability of release $p$. 
+The expected number of vesicles released from each RRP is then $\bar{n}=np$. If the average quanta of neurotransmitter found in each vesicle is $q$, then the expected amount of neurotransmitter released for a given concentration of {\calcium} is $q n p$ and the maximum amount of neurotransmitter that can be released is $qn$. 
+
+\paragraph{Time course of the probability of release at a single synapse.} The probability of release is not really fixed. The probability of release can be assumed to depend on the intracellular calcium ({\calcium}) concentration in the terminal, which depends on the opening of voltage-dependent channels and the clearance of calcium by intracellular buffers and intracellular machinery activated by {\calcium}. The time-dependent change in the  intracellular calcium concentration ($c$) in the presynaptic membrane can be modelled as \citep{AvRonParnasSegel1993} 
+\begin{equation}
+\partial_t c = \frac{c_m - c}{\tau_c}  - k_c I_{Ca}(v,c)
+\label{eq:caDynamics}
+\end{equation}
+where $I_{Ca}$ is the total {\calcium}-current in the presynaptic terminal, and $v$ is the presynaptic membrane potential.  For simplification purposes, notice that the second term in equation \eqref{eq:caDynamics} can be replaced by time-dependent function that represents the increment in the {\calcium}-concentration as a function of time (e.g. a sum delta pulses or, alternatively, alpha functions, each activated at different times  representing the spike times). The probability of release at steady state can be then assumed to behave as 
+\begin{equation}
+p_{\infty}(c; c_p, g_p) = \frac{1}{1+ \exp\lrRound{ \frac{c_p -  c}{g_p}}}
+\label{ssPRelease}
+\end{equation}
+where $c_p$ and $g_p$ are the half-concentration and the gain for the probability of release.  Given two values for the gain, $g_1$ and $g_2$ such that $g_{1}< g_{2}$, the corresponding probabilities of release are $p_1$ and $p_2$ are such that 
+$p_1(c) > p_2(c)$ for $c<c_p$ and $p_1(c) < p_2(c)$ for $c>c_p$. 
+The probability of release is more like an on/off switch for large enough values of $g_p$. Small enough values of $g_p$ yield leaky synapses. One interpretation of this behaviour is that the presynaptic release machinery with $g_1$ is more efficient than for $g_2$, for the same intracellular {\calcium}; an effect that could be produced by modulation. 
+
+The probability of release at steady state is a monotonically increasing function. Therefore, if the concentration of {\calcium} increases, or the half-concentration for $p_{\infty}$, $c_p$ decreases, then the expected amount of neurotransmitter increases. In particular, if the {\calcium} dynamics are such that the firing frequency of the presynaptic neuron causes an accumulation
+
+The steady state for $p$ can then be used to define the time-evolution of $p$ as 
+\begin{equation}
+\partial_t p = \frac{p_{\infty}(c) - p}{\tau_p}  
+\label{eq:pRelDynamics}
+\end{equation}
+
+Let $q$ be the amount of neurotransmitter contained in the vesicles of the RRP, normalized by the maximum amount of neurotransmitter in the RRP. The time-dependent change in $q$ at time $t$ can be assumed to satisfy
+\begin{equation}
+\partial_t q = q \frac{q_{\infty} - q}{\tau_q} \lrRound{1- p}
+\label{eq:ntRRPDynamics}
+\end{equation}
+The normalized amount of neurotransmitter released at time $t$ is then $p(t) q(t)$. 
+
+
+
+\section{Somatic current as an average of synapses for each synaptic contact}
+It is known that each posynaptic potential provokes a current $I_s(v)$ that   propagates toward the soma. This propagation entails a characteristic attenuation factor $\kappa$ due to morpholical properties that can be explained by a cable equation. The somatic current registered in experimental procedures can be seen as a sum of all synapses occurred at the same synaptic contact.
+\begin{eqnarray}
+I_s(v_i)=\sum_{i=1}^n\kappa_iI_i(v)
+\end{eqnarray}
+where $\kappa_i$ is the  attenuation factor correspondent to the $i$th synapse of the synaptic contact which could be assumed as the same for each $i$ if we suppose anatomic uniformity of the posynaptic cell.   
+So 
+\begin{eqnarray}
+I_s(v_i)=\sum_{i=1}^n\kappa I_i(v)=\kappa \sum_{i=1}^n I_i(v)
+\end{eqnarray}
+Let it be $I_m(v)$ the average of the distribution of all synaptic currents of the same synaptic contact. Then $I_s(v_i)$ can be seen as a multiple of $\kappa I_m(v)$ 
+\begin{eqnarray}
+I_s(v_i)=\kappa \sum_{i=1}^n I_m(v)=n\kappa I_m(v)
+\end{eqnarray}
+
+\begin{appendix}
+
+\section{Equations based on  the kinetic models by \cite{destexhe1998kinetic} }
+
+
+\begin{eqnarray}
+\partial_{t} c &=& \frac{c_{\infty}-c}{\tau_{c}} - k_{c} J_{Ca}, \quad \textrm{Intracellular [Ca]}
+\\
+\partial_{t} r &=& (1-r) k_{b} c^{4} - r  k_{u} , \quad \textrm{Calcium-dependent activation of release machinery}
+\\
+\partial_{t} w_{r} &=& w_{r} \lrRound{ \frac{w_{r\infty}-w_{r}}{\tau_{w}}} + k_{2}w_{l} -  k_{1}r~w_{r}, \quad \textrm{Readily Releasable Pool}
+\\
+\partial_{t} w_{l}&=& k_{1} ~r~w_{r}  - \lrRound{k_{3} +  k_{2}}w_{l}  , \quad \textrm{Active  vesicles}
+\\
+k_{3}~w_{l} 
+& \propto & n, \quad \textrm{Released  vesicles}
+\end{eqnarray}
+
+\begin{table}
+\begin{tabular}{r r l p{0.75\textwidth}}
+Parameter & Value & Units & Description \\
+\hline &&&\\
+$c_{\infty}$ & 0.0001 & $\mu$M & Steady state concentration for intracellular calcium \citep{barroso2015diverse}\\
+$\tau_{c}$ & 10-250 & ms & Time constant for the recovery intracellular calcium concentration \citep{barroso2015diverse} \\
+$ k_{c}$ & --  &  & Impact of the voltage-dependent calcium current on the intracellular calcium \citep{barroso2015diverse} \\
+$k_{b}$ & 10$^{20}$ & ($\mu$ M)$^{-4}$ ms$^{-1}$& Binding constant for the calcium-dependent activation of the release machinery \citep{DestexheMainenSejnowski1994b}\\
+$k_{u}$ & 10$^{5}$ & ms$^{-1}$ & Unbinding constant for the calcium-dependent activation of the release machinery \citep{DestexheMainenSejnowski1994b}\\
+$k_{1}$ & 10$^{9}$ & ms$^{-1}$ & Activation rate of RRP vesicles \citep{DestexheMainenSejnowski1994b}\\
+$k_{2}$ & 10$^{5}$ & ms$^{-1}$ & Deactivation rate of RRP vesicles \citep{DestexheMainenSejnowski1994b}\\
+$k_{3} $ & 4$\cdot 10^{6}$&  & Release rate of activated RRP vesicles  \\
+$k_{n} $ & 4$\cdot 10^{7}$&  & Clearance rate for the neurotransmitter in the cleft \citep{DestexheMainenSejnowski1994b} \\
+$w_{r\infty}$ &  &  & Steady state for the readily releasable pool \citep{barroso2015diverse} \\
+$\tau_{w}$ & & ms  & Recovery time constant for the readily releasable pool \citep{barroso2015diverse} \\
+\hline &&&\\
+\end{tabular}
+\end{table}
+
+
+\end{appendix}

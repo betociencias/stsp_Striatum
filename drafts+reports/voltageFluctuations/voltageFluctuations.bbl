@@ -1,0 +1,29 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Destexhe et~al.(1994)Destexhe, Mainen, and
+  Sejnowski]{DestexheMainenSejnowski1994b}
+A.~Destexhe, Z.~F. Mainen, and T.~J. Sejnowski.
+\newblock {Synthesis of models for excitable membranes, synaptic transmission
+  and neuromodulation using a common kinetic formalism}.
+\newblock \emph{Journal of Computational Neuroscience}, 1\penalty0
+  (3):\penalty0 195--230, 1994.
+
+\bibitem[Destexhe et~al.(1998)Destexhe, Mainen, and
+  Sejnowski]{DestexheMainenSejnowski1998}
+A.~Destexhe, Z.~F. Mainen, and T.~J. Sejnowski.
+\newblock \emph{"In Methods in Neuronal Modeling"}, volume I, (2nd Edition),
+  chapter Kinetic Models of Synaptic Transmission.
+\newblock MIT Press, Cambridge, 1998.
+
+\bibitem[Mainen et~al.(1995)Mainen, Joerges, Huguenard, and
+  Sejnowski]{mainen1995model}
+Zachary~F Mainen, Jasdan Joerges, John~R Huguenard, and Terrence~J Sejnowski.
+\newblock A model of spike initiation in neocortical pyramidal neurons.
+\newblock \emph{Neuron}, 15\penalty0 (6):\penalty0 1427--1439, 1995.
+
+\end{thebibliography}

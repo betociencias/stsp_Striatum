@@ -1,0 +1,25 @@
+% !TEX root =  stsp3d2d_main.tex
+
+\section{Binary classification trains of pulses.}
+
+$a_{0},...,a_{n}$ pulse amplitudes. The change in amplitude during the $k$th interval is $s_{k}= \frac{a_{k} - a_{k-1}}{\delta_{k}}$, for $k \in \lrSet{1,...,n}$. Similarly, the change in amplitude relative to the first pulse in a train is given by $r_{k}=\frac{a_{k} - a_{0}}{\sum_{i=1}^{k}\delta_{i}}$, for $k \in \lrSet{1,...,n}$
+
+The heavy side function defined by  $H(x)=1$ if $x>0$, 0 if$x\leq 0$ can be used to determine whether there was an increase in the amplitudes between any two pulses. In particular, 
+
+One way to describe the history of changes during a train of postsynaptic responses is to record whether there was an increase or decrease in the amplitudes for each pair of responses using a binary code, and add all the results. To do so, let
+\begin{equation}
+b_{pp}(s_{1},...,s_{n}) = \sum_{k=1}^{n} \frac{H(s_{k})}{2^{k}}
+\end{equation}
+for the slopes of pulses taken by pairs. Similarly, for the slopes relative to the first pulse, let
+\begin{equation}
+b_{fp}(r_{1},...,r_{n}) = \sum_{k=1}^{n} \frac{H(r_{k})}{2^{k}}
+\end{equation}
+
+
+
+
+
+
+
+
+
