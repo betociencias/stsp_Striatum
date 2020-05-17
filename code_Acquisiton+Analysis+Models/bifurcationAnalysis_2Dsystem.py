@@ -1,1 +1,0 @@
-/Users/curandero/toolbox/dynamicalSystems/bifurcationAnalysis_2Dsystem.py
