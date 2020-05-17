@@ -14,4 +14,4 @@ El proyecto tiene distintas componentes que se enfocan en
 
 El repositorio contiene directorios con
 (i) Código relacionado a la adquisición de datos, y al análisis y la modelación de los mismos ([liga](./code_Acquisition+Analysis+Models)).
-(ii) Artículos ([pre-impresiones](./preprints) & [revisados por pares](./peer-reviewed)), [reportes técnicos](./reports), y [presentaciones](./presentations) relacionadas al proyecto.
+(ii) Artículos ([pre-impresiones](./preprints/README_preprints.md) & [revisados por pares](./peer-reviewed/README_peer-reviewed.md)), [reportes técnicos y borradores](./reports/README_presentations.md), y [presentaciones](./presentations/README_presentations.md) relacionadas al proyecto.
