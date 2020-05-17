@@ -18,5 +18,5 @@ Algunos registros electrofisiológicos para verificación de teorías y caracter
 
 El _repositorio_ tiene una estructura de directorios con:
 
-(i) Código relacionado a la adquisición de datos, y al análisis y la modelación de los mismos ([liga](code_Acquisition+Analysis+Models/README_code.md)).
+(i) Código relacionado a la adquisición de datos, y al análisis y la modelación de los mismos ([liga](code_Acquisiton+Analysis+Models/README_code.md)).
 (ii) Artículos ([pre-impresiones](preprints/README_preprints.md) & [revisados por pares](peer-reviewed/README_peer-reviewed.md)), [reportes técnicos y borradores](reports/README_presentations.md), y [presentaciones](presentations/README_presentations.md) relacionadas al proyecto.
