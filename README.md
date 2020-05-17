@@ -12,8 +12,8 @@ El proyecto tiene distintas componentes que se enfocan en
 
 (b) Modelos de plasticidad sináptica para pares de células dentro del núcleo estriado sujetas a inervación no necesariamente independiente.
 
-2. [Muestras de datos](sampleData/README_data.md)
-Agunos registros electrofisiológicos para verificación de teorías y caracterización de rangos para parámetros y variables biofísicas consideradas en los modelos.
+2. [Muestras de datos](sampleData/README_sampleData.md)
+Algunos registros electrofisiológicos para verificación de teorías y caracterización de rangos para parámetros y variables biofísicas consideradas en los modelos.
 
 
 El _repositorio_ tiene una estructura de directorios con:
